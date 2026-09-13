@@ -9,19 +9,18 @@ Currently MUN delegate and committee information is mostly managed manually usin
 
 ## Team Members
 - Krishiv Negi (Team Lead)
-- Aniket Kaushal
 - Ayush Badoni
+- Aniket Kaushal
 - Arjun
 
 ## Technologies/Tool Used
-- C++
+- C/C++
 - HTML
 - CSS 
 - JavaScript
 - MySQL
 - Visual Studio Code
 - Git/GitHub
-- OOP & DSA
  
  ## Project Setup/Installation instructions
  The basic project environment and required technologies have been identified and configured. The project is ready for the implementation phase using C++, HTML, CSS, JavaScript, MySQL, VIsual Studio Code and Git/GitHub.
