@@ -1,7 +1,7 @@
 # MUN Management & Allocation System
 
 ## Project Description
-MUN Management & Allocation System is a web based system designed to make MUN delegate management and committee/ portfolio allocation faster, more organised and less dependent on manual work. The system will collect delegate details such as MUN experience, previous committees, awards and preferences and use this information to suggest suitable committees and portfolios. 
+Model United Nations(MUN) is an academic simulation of the united nations where participants represent different countries and discuss global issues and ,MUN Management & Allocation System is a web based system designed to make MUN delegate management and committee/ portfolio allocation faster, more organised and less dependent on manual work. The system will collect delegate details such as MUN experience, previous committees, awards and preferences and use this information to suggest suitable committees and portfolios. 
 
 
 ## Project Statement / Objective
@@ -24,7 +24,7 @@ Currently MUN delegate and committee information is mostly managed manually usin
 - OOP & DSA
  
  ## Project Setup/Installation instructions
- The project will be developed using C++, HTML, CSS, JavaScript and MySQL. Clone the repository, open it in Visual studio Code, configure the MySQL database, and run the application using the required development environment. Detailed setup instructions will be added as a development.
+ The basic project environment and required technologies have been identified and configured. The project is ready for the implementation phase using C++, HTML, CSS, JavaScript, MySQL, VIsual Studio Code and Git/GitHub.
 
 ## Major features/Modules
 ### Module 1. Delgate Management 
