@@ -1,4 +1,5 @@
 #include<iostream>
+#include<vector>
 using namespace std;
 class Delegate{
     string name, country;
@@ -14,17 +15,36 @@ class Delegate{
             getline(cin,country);
         }
         void display(){
-            cout<<"----Delegate Details----"<<endl;
             cout<<"Name: "<<name<<endl;
             cout<<"Age: "<<age<<endl;
             cout<<"Country: "<<country<<endl;
+            cout<<endl<<endl;
         }
 };
+vector<Delegate> delegates;
 
 int main(){
-   Delegate d;  
-
-    d.input();
-    d.display();
+    int ch;
+    do{
+        cout<<"----Delegate Management----"<<endl;
+        cout<<"1. Add Delegate\n2.Display Delegates\n3.Exit\n Enter the choice: ";
+        cin>>ch;
+        cin.ignore();
+        Delegate d;  
+        switch(ch){
+            case 1:
+                d.input();
+                delegates.push_back(d);
+                break;
+            case 2:
+            cout<<"-----Delegates Details-----"<<endl;
+                for(Delegate d:delegates){
+                d.display();
+                }
+                break;
+            
+        }
+    }
+    while(ch<=2);
     return 0;
 }
