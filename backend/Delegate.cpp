@@ -16,7 +16,6 @@ class Delegate{
             cin.ignore();
             cout<<"Enter Country: ";
             getline(cin,country);
-        
             cout<<"How many previous committees attends? : ";
             cin>>num;
             cin.ignore();
@@ -56,8 +55,7 @@ class Delegate{
                 cout<<i+1<<". "<<award<<" "<<endl;
             }
             cout<<endl;
-            }
-        
+            }     
         void search();
         void update();
         };
@@ -66,11 +64,13 @@ vector<Delegate> delegates;
 
 void Delegate:: search(){
             string s;
+            int c=0;
             cout<<"\nEnter Delegate Name: ";
             getline(cin,s);
             for(Delegate d: delegates){
                 if(d.name==s){
                     cout<<"\nName Found!\n"<<endl;
+                     c=1;
                      int i=0;
                 cout<<"Name: "<<d.name<<endl;
                 cout<<"Age: "<<d.age<<endl;
@@ -91,20 +91,27 @@ void Delegate:: search(){
                  
                     
                 }
+                
+            }
+            if(c==0){
+                cout<<"\nName Not Found!\n"<<endl;
             }
 
 }
 void Delegate:: update(){
      string s;
+     int c=0;
             cout<<"\nEnter Delegate Name: ";
             getline(cin,s);
-            for(Delegate d: delegates){
+            for(Delegate &d: delegates){
                 if(d.name==s){
                     int ch,n;
+                    c=1;
                     cout<<"\nName Found!\n"<<endl;
                     cout<<"What do you want to update?"<<endl<<"1.Age"<<endl
                         <<"2.Country"<<endl<<"3.Previous Committees"<<endl
                         <<"4.MUN Attended"<<endl<<"5.Awards"<<endl<<"Enter choice: ";
+                        cin>>ch;
                     switch(ch){
                         case 1:
                             cout<<"Enter new Age: ";
@@ -138,6 +145,8 @@ void Delegate:: update(){
                             break; 
                      }
                  }
+            }if(c==0){
+                cout<<"\nName Not Found!\n"<<endl;
             }
 }
 int main(){
