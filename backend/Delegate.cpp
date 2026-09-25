@@ -1,5 +1,8 @@
 #include<iostream>
+#include<memory>
+#include<string>
 #include<vector>
+#include<mysql/jdbc.h>
 using namespace std;
 class Delegate{
     string name, country;
@@ -35,29 +38,98 @@ class Delegate{
             getline(cin,award);
             awards.push_back(award);
         }
+
+       try {
+    sql::mysql::MySQL_Driver* driver =
+        sql::mysql::get_mysql_driver_instance();
+
+    std::unique_ptr<sql::Connection> con(
+        driver->connect(
+            "tcp://127.0.0.1:3306",
+            "root",
+            "admin"
+        )
+    );
+
+    con->setSchema("mun_management");
+    std::unique_ptr<sql::PreparedStatement> pstmt(
+        con->prepareStatement(
+            "INSERT INTO delegates "
+            "(name, age, country, mun_attend) "
+            "VALUES (?, ?, ?, ?)"
+        )
+    );
+
+    pstmt->setString(1, name);
+    pstmt->setInt(2, age);
+    pstmt->setString(3, country);
+    pstmt->setInt(4, mun_attend);
+
+    pstmt->executeUpdate();
+
+
+    int delegate_id = 0;
+
+    std::unique_ptr<sql::PreparedStatement> idStmt(
+        con->prepareStatement(
+            "SELECT delegate_id FROM delegates "
+            "WHERE name = ? AND age = ? AND country = ? "
+            "AND mun_attend = ? "
+            "ORDER BY delegate_id DESC LIMIT 1"
+        )
+    );
+
+    idStmt->setString(1, name);
+    idStmt->setInt(2, age);
+    idStmt->setString(3, country);
+    idStmt->setInt(4, mun_attend);
+
+    std::unique_ptr<sql::ResultSet> result(
+        idStmt->executeQuery()
+    );
+
+    if (result->next()) {
+        delegate_id = result->getInt("delegate_id");
+        cout<<"Delegate_id:"<<delegate_id<<endl;
+    }
+    
+
+    std::unique_ptr<sql::PreparedStatement> committeeStmt(
+        con->prepareStatement(
+            "INSERT INTO previous_committees (delegate_id, committee_name) VALUES (?, ?)"
+        )
+    );
+
+    for (string committee : prev_committees) {
+
+        committeeStmt->setInt(1, delegate_id);
+        committeeStmt->setString(2, committee);
+        committeeStmt->executeUpdate();
+
+        cout<<"Committee SAved:"<<committee<<endl;
+    }
+
+    std::unique_ptr<sql::PreparedStatement> awardStmt(
+        con->prepareStatement(
+            "INSERT INTO award (delegate_id, award_name) VALUES (?, ?)"
+        )
+    );
+    for (string award : awards) {
+        awardStmt->setInt(1, delegate_id);
+        awardStmt->setString(2, award);
+        awardStmt->executeUpdate();
+        cout<<"Award saved:"<<award<<endl;
+    }
+    cout << "Delegate saved to database successfully!" << endl;
+}
+catch (sql::SQLException &e) {
+    cout << "Database Error: " << e.what() << endl;
+}
         }
-        void display(){
-            int i=0;
-            cout<<"Name: "<<name<<endl;
-            cout<<"Age: "<<age<<endl;
-            cout<<"Country: "<<country<<endl;
-            cout<<"Previous Committee: "<<endl;
-            for(string c: prev_committees){
-                cout<<i+1<<". ";
-            cout<< c <<" "<<endl;
-            i++;
-            }
-            cout<<"MUN Attended: "<<mun_attend;
-            cout<<endl<<endl;
-            cout<<"Awards: "<<endl;
-            i=0;
-            for(string award:awards){
-                cout<<i+1<<". "<<award<<" "<<endl;
-            }
-            cout<<endl;
-            }     
+         
         void search();
         void update();
+        void deleteDelegate();
         };
 
 vector<Delegate> delegates;
@@ -147,13 +219,97 @@ void Delegate:: update(){
                  }
             }if(c==0){
                 cout<<"\nName Not Found!\n"<<endl;
+            }else{
+                cout<<"Successfully updated ! "<<endl;
             }
 }
+void Delegate:: deleteDelegate(){
+    string s;
+    int c=0,c1;
+    cout<<"\nEnter Delegate Name: ";
+    getline(cin,s);
+    for(auto it=delegates.begin(); it!=delegates.end(); ++it){
+        if(it->name==s){
+            cout<<"\nName Found!\n"<<endl;
+            cout<<"Are you sure you want to delete this delegate? (1 for Yes, 0 for No): ";
+            cin>>c1;
+            if(c1==1){
+                delegates.erase(it);
+                cout<<"Successfully Deleted!"<<endl;
+            }c=1;
+            break;
+
+        }
+    }if(c==0)
+        cout<<"Name Not Found!\n";
+    
+}
+void display(){
+    try {
+        sql::mysql::MySQL_Driver* driver =
+            sql::mysql::get_mysql_driver_instance();
+
+        std::unique_ptr<sql::Connection> con(
+            driver->connect("tcp://127.0.0.1:3306", "root", "admin")
+        );
+
+        con->setSchema("mun_management");
+
+        std::unique_ptr<sql::Statement> stmt(con->createStatement());
+        std::unique_ptr<sql::ResultSet> res(
+            stmt->executeQuery("SELECT * FROM delegates")
+        );
+
+        while (res->next()) {
+            int delegate_id = res->getInt("delegate_id");
+            std::string name = res->getString("name");
+            int age = res->getInt("age");
+            std::string country = res->getString("country");
+            int mun_attend = res->getInt("mun_attend");
+
+            std::cout << "Delegate ID: " << delegate_id << "\n";
+            std::cout << "Name: " << name << "\n";
+            std::cout << "Age: " << age << "\n";
+            std::cout << "Country: " << country << "\n";
+            std::cout << "MUN Attended: " << mun_attend << "\n";
+
+            // Committees
+            std::unique_ptr<sql::PreparedStatement> commStmt(
+                con->prepareStatement("SELECT committee_name FROM previous_committees WHERE delegate_id = ?")
+            );
+            commStmt->setInt(1, delegate_id);
+            std::unique_ptr<sql::ResultSet> commRes(commStmt->executeQuery());
+            std::cout << "Previous Committees:\n";
+            int i = 1;
+            while (commRes->next()) {
+                std::cout << i++ << ". " << commRes->getString("committee_name") << "\n";
+            }
+
+            // Awards
+            std::unique_ptr<sql::PreparedStatement> awardStmt(
+                con->prepareStatement("SELECT award_name FROM award WHERE delegate_id = ?")
+            );
+            awardStmt->setInt(1, delegate_id);
+            std::unique_ptr<sql::ResultSet> awardRes(awardStmt->executeQuery());
+            std::cout << "Awards:\n";
+            i = 1;
+            while (awardRes->next()) {
+                std::cout << i++ << ". " << awardRes->getString("award_name") << "\n";
+            }
+
+            std::cout << "-----------------------------\n";
+        }
+    }
+    catch (sql::SQLException &e) {
+        std::cout << "Database Error: " << e.what() << std::endl;
+    }
+}
+
 int main(){
     int ch;
     do{
         cout<<"----Delegate Management----"<<endl;
-        cout<<"1. Add Delegate\n2.Display Delegate\n3.Search Delegate\n 4.Update Delegate\n5.Exit\nEnter the choice: ";
+        cout<<"1. Add Delegate\n2.Display Delegate\n3.Search Delegate\n 4.Update Delegate\n5.Delete Delegate\n6.Exit\nEnter the choice: ";
         cin>>ch;
         cin.ignore();
         Delegate d;  
@@ -164,9 +320,8 @@ int main(){
                 break;
             case 2:
             cout<<"-----Delegates Details-----"<<endl;
-                for(Delegate d:delegates){
-                d.display();
-                }
+            display();
+                
                 break;
             case 3:
                 d.search();
@@ -174,9 +329,12 @@ int main(){
             case 4:
                 d.update();
                 break;
+            case 5:
+                d.deleteDelegate();
+                break;
             
         }
     }
-    while(ch<=4);
+    while(ch<6);
     return 0;
 }
