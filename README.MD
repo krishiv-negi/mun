@@ -27,9 +27,9 @@ Currently MUN delegate and committee information is mostly managed manually usin
 
 ## Major features/Modules
 ### Module 1. Delgate Management 
-Collect, store and manage delegate details.
+Manage delegate records throughout the MUN process. The module supports adding, searching, updating, deleting and displaying delegate information using a unique Delegate ID.
 ### Module 2. CV information
-Store and organise MUn experience, previous committees, awards and other relevant information.
+Takes the delegate's CV input and extract MUN experience.
 ### Module 3. Committee & Portfolio Management 
 Manage committees, available portfolios and committee capacity.
 ### Moddule 4. Delegate Allocation
