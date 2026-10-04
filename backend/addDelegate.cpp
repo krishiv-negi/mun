@@ -1,22 +1,32 @@
 #include "class.h"
  
  void Delegate::input(){
-            string committee;
-            cout<<"Enter Delegate Name: ";
-            getline(cin,name);
-            cout<<"Enter Age: ";
-            cin>>age;
-            cin.ignore();
-            cout<<"Enter Country: ";
-            getline(cin,country);
-            cout<<"How many previous committees attends? : ";
-            cin>>num;
-            cin.ignore();
-            cout<<"Enter Previous Committees name: ";
-            for(int i=0; i<num; i++){
+    cout << "\n";
+    cout << "+--------------------------------------------------+\n";
+    cout << "|                 ADD DELEGATE                     |\n";
+    cout << "+--------------------------------------------------+\n";
+
+    cout<<"\n+-------------------+---------------------------+\n";
+    cout << "| Field             | Input                     |\n";
+    cout << "+-------------------+---------------------------+\n";
+    string committee;
+     cout<<"Enter Delegate Name: ";
+     getline(cin,name);
+     cout<<"Enter Age: ";
+    cin>>age;
+    cin.ignore();
+    cout<<"Enter Country: ";
+    getline(cin,country);
+    cout<<"How many previous committees attends? : ";
+    cin>>num;
+    cin.ignore();
+    if(num>0){
+     cout<<"Enter Previous Committees name: ";
+     for(int i=0; i<num; i++){
             getline(cin,committee);
             prev_committees.push_back(committee);
         }
+    
         cout<<"How many MUN have you attended?: ";
         cin>>mun_attend;
         cout<<"How many awards have you received?: ";
@@ -28,6 +38,7 @@
             getline(cin,award);
             awards.push_back(award);
         }
+    }
         try{
         sql::mysql::MySQL_Driver* driver =
         sql::mysql::get_mysql_driver_instance();
@@ -81,7 +92,7 @@
         committeeStmt->setInt(1, delegate_id);
         committeeStmt->setString(2, committee);
         committeeStmt->executeUpdate();
-        cout<<"Committee SAved:"<<committee<<endl;
+        cout<<"Committee Saved:"<<committee<<endl;
     }
     std::unique_ptr<sql::PreparedStatement> awardStmt(
         con->prepareStatement(
@@ -99,4 +110,5 @@
 catch (sql::SQLException &e) {
     cout << "Database Error: " << e.what() << endl;
         }
+        cout << "+----------------------+---------------------------+\n";
         }

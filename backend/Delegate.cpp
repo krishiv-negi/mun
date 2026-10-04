@@ -9,10 +9,25 @@ vector<Delegate> delegates;
 int main(){
     int ch;
     do{
-        cout<<"----Delegate Management----"<<endl;
-        cout<<"1. Add Delegate\n2.Display Delegate\n3.Search Delegate\n4.Update Delegate\n5.Delete Delegate\n6.Exit\nEnter the choice: ";
-        cin>>ch;
-        cin.ignore();
+       cout << "\n";
+cout << "+--------------------------------------------------+\n";
+cout << "|              MUN MANAGEMENT SYSTEM               |\n";
+cout << "+--------------------------------------------------+\n";
+cout << "|              DELEGATE MANAGEMENT                 |\n";
+cout << "+------+-------------------------------------------+\n";
+cout << "| S.no |            OPERATION                      |\n";
+cout << "+------+-------------------------------------------+\n";
+cout << "|  1   |  Add Delegate                             |\n";
+cout << "|  2   |  Display Delegate                         |\n";
+cout << "|  3   |  Search Delegate                          |\n";
+cout << "|  4   |  Update Delegate                          |\n";
+cout << "|  5   |  Delete Delegate                          |\n";
+cout << "|  6   |  Exit                                     |\n";
+cout << "+------+-------------------------------------------+\n";
+
+cout << "Enter your choice: ";
+cin >> ch;
+cin.ignore();
         Delegate d;  
         switch(ch){
             case 1:
@@ -20,7 +35,6 @@ int main(){
                 delegates.push_back(d);
                 break;
             case 2:
-            cout<<"-----Delegates Details-----"<<endl;
                 display();
                 break;
             case 3:

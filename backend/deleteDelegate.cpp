@@ -16,7 +16,6 @@ void deleteDelegate()
             cout << "\nDatabase connection is not available!\n";
             return;
         }
-
         int id;
         cout << "\nEnter Delegate ID to delete: ";
         cin >> id;
@@ -30,11 +29,9 @@ void deleteDelegate()
         if (!res->next())
         {
             cout << "\nDelegate not found!\n";
-
             delete res;
             delete checkStmt;
             delete con;
-
             return;
         }
         cout << "\nDelegate Found: "
@@ -83,6 +80,18 @@ void deleteDelegate()
         else
         {
             cout << "\nDelegate could not be deleted.\n";
+        }
+        sql::Statement* checkEmpty = con->createStatement();
+        sql::ResultSet* emptyRes = checkEmpty->executeQuery("SELECT COUNT(*) AS cnt FROM delegates");
+         emptyRes->next();
+        int count = emptyRes->getInt("cnt");
+         delete emptyRes;
+         delete checkEmpty;
+        if (count == 0) {
+            sql::Statement* truncateStmt = con->createStatement();
+            truncateStmt->execute("TRUNCATE TABLE delegates");
+            delete truncateStmt;
+            cout << "\nTable was empty, reset AUTO_INCREMENT to 1.\n";
         }
         delete con;
     }

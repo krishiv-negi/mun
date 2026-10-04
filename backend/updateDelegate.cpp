@@ -2,36 +2,27 @@
 #include <string>
 #include <mysql/jdbc.h>
 using namespace std;
-
 void update()
 {
     try
     {
         sql::mysql::MySQL_Driver* driver;
         driver = sql::mysql::get_mysql_driver_instance();
-
         sql::Connection* con;
-
         con = driver->connect(
             "tcp://127.0.0.1:3306",
             "root",
             "admin"
         );
-
         con->setSchema("mun_management");
-
         if (con == nullptr)
         {
             cout << "\nDatabase connection is not available!\n";
             return;
         }
-
         int id;
         cout << "\nEnter Delegate ID: ";
         cin >> id;
-
-
-
         sql::PreparedStatement* pstmt =
             con->prepareStatement(
                 "SELECT delegate_id, name, age, country, mun_attend "
