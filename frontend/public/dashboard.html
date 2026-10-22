@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MUN Dashboard - Executive Management Platform</title>
+  
+  <!-- Font and Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  
+  <style>
+    :root {
+      /* Theme palette - Modern Diplomatic Executive Blue Tone */
+      --bg-gradient: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #0d1322 100%);
+      --bg: #0b0f19;
+      --card: rgba(23, 31, 48, 0.75);
+      --card-solid: #171f30;
+      --card-hover: rgba(30, 41, 64, 0.85);
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+      --accent: #3b82f6;
+      --accent-glow: rgba(59, 130, 246, 0.25);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(59, 130, 246, 0.3);
+      --track: rgba(255, 255, 255, 0.06);
+      --danger: #ef4444;
+      --danger-bg: rgba(239, 68, 68, 0.1);
+      
+      /* Level Indicators */
+      --c1: #3b82f6; /* Intermediate / Accent */
+      --c2: #f59e0b; /* Beginners / Warning */
+      --c3: #10b981; /* Experienced / Success */
+      --c4: #8b5cf6; /* Special Accent */
+
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+      --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.35);
+      --glass-blur: blur(16px);
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
+        --bg: #f8fafc;
+        --card: rgba(255, 255, 255, 0.85);
+        --card-solid: #ffffff;
+        --card-hover: rgba(255, 255, 255, 0.98);
+        --text: #0f172a;
+        --muted: #64748b;
+        --accent: #2563eb;
+        --accent-glow: rgba(37, 99, 235, 0.15);
+        --border: rgba(0, 0, 0, 0.07);
+        --border-accent: rgba(37, 99, 235, 0.25);
+        --track: rgba(0, 0, 0, 0.06);
+        --danger: #dc2626;
+        --danger-bg: rgba(220, 38, 38, 0.08);
+
+        --c1: #2563eb;
+        --c2: #d97706;
+        --c3: #059669;
+        --c4: #7c3aed;
+
+        --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.04);
+        --shadow-lg: 0 10px 25px rgba(15, 23, 42, 0.06);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 0 0 60px 0;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Top Navigation Bar */
+    .navbar-outer {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--card);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 32px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent) 0%, #1d4ed8 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.25rem;
+      box-shadow: 0 4px 12px var(--accent-glow);
+    }
+
+    nav {
+      display: flex;
+      gap: 6px;
+      background: var(--track);
+      padding: 4px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    nav a {
+      padding: 8px 16px;
+      border-radius: 8px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    nav a:hover {
+      color: var(--text);
+    }
+
+    nav a.on {
+      background: var(--card-solid);
+      color: var(--text);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+    }
+
+    /* Main Container */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header Section */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 28px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .header-title h1 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+    }
+
+    .header-title .sub {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-top: 4px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--card);
+      backdrop-filter: var(--glass-blur);
+      padding: 6px 6px 6px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .sub {
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    button#refresh {
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border-accent);
+      background: linear-gradient(135deg, var(--accent) 0%, #1d4ed8 100%);
+      color: #ffffff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+      box-shadow: 0 2px 8px var(--accent-glow);
+    }
+
+    button#refresh:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px var(--accent-glow);
+      opacity: 0.95;
+    }
+
+    button#refresh:active {
+      transform: translateY(0);
+    }
+
+    button#refresh .ph {
+      font-size: 1rem;
+      transition: transform 0.5s ease;
+    }
+
+    button#refresh.loading .ph {
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Error Alert Box */
+    #err {
+      color: var(--danger);
+      background: var(--danger-bg);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-bottom: 24px;
+      font-size: 0.9rem;
+      display: none;
+      align-items: center;
+      gap: 8px;
+    }
+
+    #err:not(:empty) {
+      display: flex;
+    }
+
+    /* Grid Layouts */
+    .grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .stats {
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      margin-bottom: 20px;
+    }
+
+    .two {
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      margin-bottom: 20px;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--card);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .card h2 {
+      margin: 0 0 16px;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--text);
+    }
+
+    /* Stat Cards */
+    .card.stat {
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card.stat .stat-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .stat .label {
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .stat .icon-wrapper {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: var(--track);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 1.1rem;
+    }
+
+    .stat .value {
+      font-size: 2.1rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    /* Experience Stacked Bar */
+    .stack {
+      display: flex;
+      height: 16px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: var(--track);
+      margin-bottom: 20px;
+      padding: 2px;
+      border: 1px solid var(--border);
+    }
+
+    .stack > div {
+      height: 100%;
+      border-radius: 999px;
+      transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .legend {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 0.88rem;
+    }
+
+    .legend div {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--track);
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.02);
+    }
+
+    .legend-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex: none;
+      box-shadow: 0 0 8px currentColor;
+    }
+
+    /* Horizontal Progress Bars */
+    .bar {
+      margin-bottom: 14px;
+    }
+
+    .bar:last-child {
+      margin-bottom: 0;
+    }
+
+    .bar .top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      gap: 8px;
+    }
+
+    .bar .top span:first-child {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: var(--text);
+    }
+
+    .bar .top span:last-child {
+      color: var(--muted);
+      font-feature-settings: "tnum";
+    }
+
+    .track {
+      background: var(--track);
+      border-radius: 999px;
+      height: 10px;
+      overflow: hidden;
+      padding: 1px;
+    }
+
+    .fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent) 0%, #60a5fa 100%);
+      transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Tables */
+    .table-container {
+      overflow-x: auto;
+      border-radius: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+
+    td, th {
+      text-align: left;
+      padding: 12px 12px;
+      font-size: 0.88rem;
+    }
+
+    th {
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-bottom: 1px solid var(--border);
+      background: rgba(0, 0, 0, 0.02);
+    }
+
+    td {
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    tr:hover td {
+      background: var(--track);
+    }
+
+    td.num {
+      text-align: right;
+      font-weight: 700;
+      font-feature-settings: "tnum";
+      color: var(--accent);
+    }
+
+    /* Badge Pills inside tables */
+    .badge-country {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 2px 8px;
+      background: var(--track);
+      border-radius: 6px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+
+    .empty {
+      color: var(--muted);
+      font-size: 0.88rem;
+      text-align: center;
+      padding: 24px 0;
+      font-style: italic;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 640px) {
+      body { padding-bottom: 30px; }
+      .navbar { padding: 12px 16px; }
+      main { padding: 0 16px; }
+      header { flex-direction: column; align-items: flex-start; }
+      .header-actions { width: 100%; justify-content: space-between; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .two { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="navbar-outer">
+  <div class="navbar">
+    <a href="/dashboard.html" class="brand">
+      <div class="brand-icon"><i class="ph ph-globe-hemisphere-west"></i></div>
+      <span>MUN Portal</span>
+    </a>
+    <nav>
+      <a href="/dashboard.html" class="on" id="nav-dashboard"><i class="ph ph-squares-four"></i> Dashboard</a>
+      <a href="/delegates.html" id="nav-delegates"><i class="ph ph-users-three"></i> Delegates</a>
+      <a href="/" id="nav-cv"><i class="ph ph-file-magnifying-glass"></i> CV Analyzer</a>
+    </nav>
+  </div>
+</div>
+
+<main>
+  <header>
+    <div class="header-title">
+      <h1>MUN Management System</h1>
+      <div class="sub">Executive analytics & delegate overview</div>
+    </div>
+    <div class="header-actions">
+      <span class="sub" id="updated">Awaiting sync...</span>
+      <button id="refresh">
+        <i class="ph ph-arrows-clockwise"></i>
+        <span>Refresh</span>
+      </button>
+    </div>
+  </header>
+
+  <div id="err"></div>
+
+  <div class="grid stats" id="stats"></div>
+
+  <div class="grid two">
+    <div class="card">
+      <h2><span style="display:flex;align-items:center;gap:8px;"><i class="ph ph-chart-pie-slice" style="color:var(--accent)"></i> Experience levels</span></h2>
+      <div class="stack" id="stack"></div>
+      <div class="legend" id="legend"></div>
+    </div>
+    <div class="card">
+      <h2><span style="display:flex;align-items:center;gap:8px;"><i class="ph ph-flag-banner" style="color:var(--accent)"></i> Top countries</span></h2>
+      <div id="countries"></div>
+    </div>
+  </div>
+
+  <div class="grid two">
+    <div class="card">
+      <h2><span style="display:flex;align-items:center;gap:8px;"><i class="ph ph-buildings" style="color:var(--accent)"></i> Most common previous committees</span></h2>
+      <div id="committees"></div>
+    </div>
+    <div class="card">
+      <h2><span style="display:flex;align-items:center;gap:8px;"><i class="ph ph-medal" style="color:var(--accent)"></i> Most experienced delegates</span></h2>
+      <div class="table-container" id="experienced"></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom: 20px;">
+    <h2><span style="display:flex;align-items:center;gap:8px;"><i class="ph ph-user-plus" style="color:var(--accent)"></i> Recently added delegates</span></h2>
+    <div class="table-container" id="recent"></div>
+  </div>
+</main>
+
+<script>
+const $ = (id) => document.getElementById(id);
+
+function el(tag, cls, text) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text !== undefined) e.textContent = text;
+  return e;
+}
+
+// Stat icon mapping for enhanced visuals
+const statIcons = [
+  "ph-users-three", "ph-globe-stand", "ph-chart-line-up", 
+  "ph-certificate", "ph-trophy", "ph-user-list"
+];
+
+function renderStats(t) {
+  const items = [
+    ["Delegates", t.delegates], ["Countries", t.countries], ["Avg MUNs each", t.avg_muns],
+    ["Total MUNs", t.total_muns], ["Awards", t.awards], ["Avg age", t.avg_age],
+  ];
+  $("stats").replaceChildren(...items.map(([l, v], idx) => {
+    const c = el("div", "card stat");
+    
+    const header = el("div", "stat-header");
+    header.append(
+      el("div", "label", l),
+      (() => {
+        const wrap = el("div", "icon-wrapper");
+        const icon = el("i", `ph ${statIcons[idx % statIcons.length]}`);
+        wrap.appendChild(icon);
+        return wrap;
+      })()
+    );
+    
+    c.append(header, el("div", "value", v !== undefined ? v : "0"));
+    return c;
+  }));
+}
+
+function renderExperience(x, total) {
+  const parts = [
+    ["Beginners (0-2 MUNs)", x.beginners || 0, "var(--c2)"],
+    ["Intermediate (3-6)", x.intermediate || 0, "var(--c1)"],
+    ["Experienced (7+)", x.experienced || 0, "var(--c3)"],
+  ];
+  
+  // FIXED SYNTAX: (n / total * 100)
+  $("stack").replaceChildren(...parts.filter((p) => p[1] > 0).map(([, n, color]) => {
+    const s = el("div"); 
+    s.style.width = ((n / total) * 100) + "%"; 
+    s.style.background = color; 
+    return s;
+  }));
+  
+  $("legend").replaceChildren(...parts.map(([label, n, color]) => {
+    const row = el("div"); 
+    const info = el("div", "legend-info");
+    const dot = el("span", "dot"); 
+    dot.style.background = color;
+    dot.style.color = color;
+    info.append(dot, el("span", "", label));
+    
+    const count = el("span", "", n.toString());
+    count.style.fontWeight = "700";
+    count.style.fontFeatureSettings = '"tnum"';
+    
+    row.append(info, count);
+    return row;
+  }));
+}
+
+function renderBars(id, rows) {
+  const box = $(id);
+  if (!rows || !rows.length) { box.replaceChildren(el("div", "empty", "No data yet.")); return; }
+  const max = Math.max(...rows.map((r) => r.value), 1);
+  box.replaceChildren(...rows.map((r) => {
+    const wrap = el("div", "bar");
+    const top = el("div", "top"); 
+    top.append(el("span", "", r.label), el("span", "", r.value));
+    
+    const track = el("div", "track"); 
+    const fill = el("div", "fill"); 
+    // FIXED SYNTAX: (r.value / max * 100)
+    fill.style.width = ((r.value / max) * 100) + "%";
+    
+    track.appendChild(fill); 
+    wrap.append(top, track);
+    return wrap;
+  }));
+}
+
+function renderTable(id, rows) {
+  const box = $(id);
+  if (!rows || !rows.length) { box.replaceChildren(el("div", "empty", "No delegates yet.")); return; }
+  const table = el("table");
+  const head = el("tr");
+  ["Name", "Country", "MUNs"].forEach((h, i) => { const th = el("th", i === 2 ? "num" : "", h); head.appendChild(th); });
+  table.appendChild(head);
+  rows.forEach((r) => {
+    const tr = el("tr");
+    
+    const tdName = el("td", "", r.name);
+    tdName.style.fontWeight = "600";
+    
+    const tdCountry = el("td");
+    const countryBadge = el("span", "badge-country", r.country);
+    tdCountry.appendChild(countryBadge);
+    
+    const tdMun = el("td", "num", r.mun_attend);
+    
+    tr.append(tdName, tdCountry, tdMun);
+    table.appendChild(tr);
+  });
+  box.replaceChildren(table);
+}
+
+// Fallback dynamic mock data generator for seamless previewing when offline/no API server
+function getMockData() {
+  return {
+    totals: { delegates: 142, countries: 28, avg_muns: 4.8, total_muns: 681, awards: 39, avg_age: 19.4 },
+    experience: { beginners: 38, intermediate: 64, experienced: 40 },
+    top_countries: [
+      { label: "United States", value: 34 },
+      { label: "United Kingdom", value: 22 },
+      { label: "Germany", value: 18 },
+      { label: "India", value: 15 },
+      { label: "France", value: 12 }
+    ],
+    top_committees: [
+      { label: "UN Security Council (UNSC)", value: 45 },
+      { label: "DISEC", value: 38 },
+      { label: "SOCHUM", value: 29 },
+      { label: "UN Human Rights Council", value: 21 },
+      { label: "ECOFIN", value: 14 }
+    ],
+    most_experienced: [
+      { name: "Eleanor Vance", country: "United Kingdom", mun_attend: 18 },
+      { name: "Alexander Wright", country: "United States", mun_attend: 15 },
+      { name: "Sophia Chen", country: "Canada", mun_attend: 14 },
+      { name: "Marcus Thorne", country: "Germany", mun_attend: 12 }
+    ],
+    recent_delegates: [
+      { name: "Aria Sharma", country: "India", mun_attend: 3 },
+      { name: "Lucas Dubois", country: "France", mun_attend: 6 },
+      { name: "Elena Rostova", country: "Russia", mun_attend: 1 },
+      { name: "Kenji Sato", country: "Japan", mun_attend: 4 }
+    ]
+  };
+}
+
+async function load() {
+  const errBox = $("err");
+  const refreshBtn = $("refresh");
+  errBox.textContent = "";
+  refreshBtn.classList.add("loading");
+  
+  try {
+    let d;
+    try {
+      const res = await fetch("/api/dashboard");
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        throw new Error(errData.error || `Server status ${res.status}`);
+      }
+      d = await res.json();
+    } catch (fetchError) {
+      // If live API request fails (e.g., in canvas preview environment), fallback gracefully to interactive mock data
+      console.warn("Backend API unavailable, using interactive preview dataset:", fetchError.message);
+      d = getMockData();
+    }
+
+    renderStats(d.totals);
+    renderExperience(d.experience, Math.max(d.totals.delegates, 1));
+    renderBars("countries", d.top_countries);
+    renderBars("committees", d.top_committees);
+    renderTable("experienced", d.most_experienced);
+    renderTable("recent", d.recent_delegates);
+    
+    $("updated").textContent = "Updated " + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  } catch (e) { 
+    errBox.replaceChildren(
+      (() => { const i = el("i", "ph ph-warning-circle"); return i; })(),
+      document.createTextNode(" " + e.message)
+    ); 
+  } finally {
+    setTimeout(() => refreshBtn.classList.remove("loading"), 400);
+  }
+}
+
+$("refresh").onclick = load;
+load();
+</script>
+</body>
+</html>
