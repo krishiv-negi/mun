@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MUN Management System</title>
+<style>
+  :root { --bg:#f5f6fa; --card:#fff; --text:#1d2433; --muted:#6b7280; --accent:#2f5bea; --danger:#d93025; --border:#e3e6ee; --chip:#eaf0ff; --chipText:#2f5bea; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#12151c; --card:#1b1f2a; --text:#e8ebf3; --muted:#9aa3b5; --accent:#6b8cff; --danger:#ff6b60; --border:#2b3140; --chip:#262d44; --chipText:#9db3ff; }
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:system-ui,-apple-system,Segoe UI,sans-serif; background:var(--bg); color:var(--text); padding:24px 16px; }
+  main { max-width:1040px; margin:0 auto; }
+  header { display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:8px; margin-bottom:16px; }
+  h1 { margin:0; font-size:1.5rem; }
+  .sub { color:var(--muted); font-size:.9rem; }
+  .bar { display:flex; gap:8px; margin-bottom:8px; }
+  input, button { font:inherit; }
+  input { padding:10px 12px; border:1px solid var(--border); border-radius:10px; background:var(--card); color:var(--text); width:100%; }
+  .bar input { flex:1; }
+  button { padding:10px 16px; border:0; border-radius:10px; cursor:pointer; background:var(--accent); color:#fff; white-space:nowrap; }
+  button.ghost { background:transparent; color:var(--text); border:1px solid var(--border); }
+  button.small { padding:6px 10px; font-size:.85rem; }
+  button.danger { background:var(--danger); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:14px; overflow:auto; }
+  table { width:100%; border-collapse:collapse; min-width:720px; }
+  th, td { text-align:left; padding:10px 14px; border-bottom:1px solid var(--border); font-size:.92rem; vertical-align:top; }
+  th { color:var(--muted); font-weight:600; font-size:.78rem; text-transform:uppercase; letter-spacing:.03em; }
+  tr:last-child td { border-bottom:0; }
+  .chip { display:inline-block; background:var(--chip); color:var(--chipText); border-radius:999px; padding:2px 10px; font-size:.8rem; margin:0 4px 4px 0; }
+  .none { color:var(--muted); }
+  .actions { white-space:nowrap; }
+  .actions button { margin-right:6px; }
+  .empty { padding:32px; text-align:center; color:var(--muted); }
+  #msg { margin:6px 0 10px; min-height:1.2em; font-size:.9rem; color:var(--muted); }
+  #msg.err { color:var(--danger); }
+  dialog { border:1px solid var(--border); border-radius:14px; background:var(--card); color:var(--text); padding:20px; width:min(480px,94vw); max-height:92vh; overflow:auto; }
+  dialog::backdrop { background:rgba(0,0,0,.5); }
+  dialog h2 { margin:0 0 8px; font-size:1.15rem; }
+  label { display:block; font-size:.82rem; color:var(--muted); margin:12px 0 4px; }
+  .two { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .listrow { display:flex; gap:6px; margin-bottom:6px; }
+  .row { display:flex; gap:8px; justify-content:flex-end; margin-top:18px; }
+  #formErr { color:var(--danger); font-size:.88rem; min-height:1.1em; margin-top:10px; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>MUN Management System</h1>
+      <div class="sub">Delegate management</div>
+    </div>
+    <div class="sub" id="count"></div>
+  </header>
+
+  <div class="bar">
+    <input type="search" id="q" placeholder="Search by name, country, age, committee or award...">
+    <button id="addBtn">+ Add Delegate</button>
+  </div>
+  <div id="msg"></div>
+
+  <div class="card">
+    <table>
+      <thead><tr><th>ID</th><th>Name</th><th>Age</th><th>Country</th><th>MUNs</th><th>Previous committees</th><th>Awards</th><th></th></tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <div id="empty" class="empty" hidden>No delegates found.</div>
+  </div>
+</main>
+
+<dialog id="dlg">
+  <form id="form" novalidate>
+    <h2 id="dlgTitle">Add Delegate</h2>
+
+    <label for="f_name">Name *</label>
+    <input id="f_name" maxlength="100">
+
+    <div class="two">
+      <div><label for="f_age">Age *</label><input id="f_age" type="number" min="1" max="120"></div>
+      <div><label for="f_mun">MUNs attended *</label><input id="f_mun" type="number" min="0" value="0"></div>
+    </div>
+
+    <label for="f_country">Country *</label>
+    <input id="f_country" maxlength="100">
+
+    <label>Previous committees</label>
+    <div id="committees"></div>
+    <button type="button" class="ghost small" id="addCommittee">+ Add committee</button>
+
+    <label>Awards</label>
+    <div id="awards"></div>
+    <button type="button" class="ghost small" id="addAward">+ Add award</button>
+
+    <div id="formErr"></div>
+    <div class="row">
+      <button type="button" class="ghost" id="cancel">Cancel</button>
+      <button type="submit">Save</button>
+    </div>
+  </form>
+</dialog>
+
+<script>
+const $ = (id) => document.getElementById(id);
+let editingId = null;
+
+function say(text, isErr) { $("msg").textContent = text || ""; $("msg").className = isErr ? "err" : ""; }
+
+async function api(url, opts) {
+  const res = await fetch(url, opts);
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || "Request failed");
+  return data;
+}
+const send = (method, body) => ({ method, headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+
+// ----- table -----
+async function load() {
+  try {
+    const list = await api("/api/delegates?q=" + encodeURIComponent($("q").value));
+    render(list);
+  } catch (e) { say(e.message, true); }
+}
+
+function chips(items) {
+  const td = document.createElement("td");
+  if (!items.length) { td.className = "none"; td.textContent = "-"; return td; }
+  items.forEach((t) => { const s = document.createElement("span"); s.className = "chip"; s.textContent = t; td.appendChild(s); });
+  return td;
+}
+
+function render(list) {
+  $("count").textContent = list.length + (list.length === 1 ? " delegate" : " delegates");
+  $("tbody").replaceChildren(...list.map((d) => {
+    const tr = document.createElement("tr");
+    [d.id, d.name, d.age, d.country, d.mun_attend].forEach((v) => {
+      const td = document.createElement("td"); td.textContent = v; tr.appendChild(td);
+    });
+    tr.appendChild(chips(d.committees));
+    tr.appendChild(chips(d.awards));
+    const td = document.createElement("td"); td.className = "actions";
+    const edit = document.createElement("button"); edit.className = "small ghost"; edit.textContent = "Edit"; edit.onclick = () => openForm(d);
+    const del = document.createElement("button"); del.className = "small danger"; del.textContent = "Delete"; del.onclick = () => remove(d);
+    td.append(edit, del); tr.appendChild(td);
+    return tr;
+  }));
+  $("empty").hidden = list.length > 0;
+}
+
+// ----- form -----
+function addRow(containerId, value) {
+  const row = document.createElement("div"); row.className = "listrow";
+  const input = document.createElement("input"); input.maxLength = 150; input.value = value || "";
+  const x = document.createElement("button"); x.type = "button"; x.className = "ghost small"; x.textContent = "✕"; x.title = "Remove";
+  x.onclick = () => row.remove();
+  row.append(input, x);
+  $(containerId).appendChild(row);
+  return input;
+}
+const readRows = (id) => [...$(id).querySelectorAll("input")].map((i) => i.value.trim()).filter(Boolean);
+
+function openForm(d) {
+  editingId = d ? d.id : null;
+  $("dlgTitle").textContent = d ? "Update Delegate" : "Add Delegate";
+  $("f_name").value = d ? d.name : "";
+  $("f_age").value = d ? d.age : "";
+  $("f_mun").value = d ? d.mun_attend : 0;
+  $("f_country").value = d ? d.country : "";
+  $("committees").replaceChildren(); $("awards").replaceChildren();
+  (d ? d.committees : []).forEach((c) => addRow("committees", c));
+  (d ? d.awards : []).forEach((a) => addRow("awards", a));
+  $("formErr").textContent = "";
+  $("dlg").showModal();
+  $("f_name").focus();
+}
+
+$("form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const body = {
+    name: $("f_name").value, age: $("f_age").value, mun_attend: $("f_mun").value,
+    country: $("f_country").value, committees: readRows("committees"), awards: readRows("awards"),
+  };
+  try {
+    if (editingId) await api("/api/delegates/" + editingId, send("PUT", body));
+    else await api("/api/delegates", send("POST", body));
+    $("dlg").close();
+    say(editingId ? "Delegate updated." : "Delegate added.");
+    load();
+  } catch (err) { $("formErr").textContent = err.message; }
+});
+
+async function remove(d) {
+  if (!confirm("Delete " + d.name + "? This also removes their committees and awards.")) return;
+  try { await api("/api/delegates/" + d.id, { method: "DELETE" }); say("Delegate deleted."); load(); }
+  catch (e) { say(e.message, true); }
+}
+
+$("addBtn").onclick = () => openForm(null);
+$("cancel").onclick = () => $("dlg").close();
+$("addCommittee").onclick = () => addRow("committees").focus();
+$("addAward").onclick = () => addRow("awards").focus();
+let t; $("q").addEventListener("input", () => { clearTimeout(t); t = setTimeout(load, 200); });
+load();
+</script>
+</body>
+</html>
