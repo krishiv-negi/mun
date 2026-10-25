@@ -33,6 +33,7 @@ cin.ignore();
             case 1:
                 d.input();
                 delegates.push_back(d);
+                exportDelegateData();
                 break;
             case 2:
                 display();
@@ -42,9 +43,11 @@ cin.ignore();
                 break;
             case 4:
                 update();
+                exportDelegateData();
                 break;
             case 5:
                 deleteDelegate();
+                exportDelegateData();
                 break;
         }
     }
