@@ -45,3 +45,14 @@ MUN Attendance: 0
 Awards:
 Previous Committees:
 --------------------------
+Delegate ID: 7
+Name: Ayush Pundir
+Age: 23
+Country: India
+MUN Attendance: 1
+Awards:
+  - Best Speaker
+Previous Committees:
+  - UNSC
+  - UNDA
+--------------------------

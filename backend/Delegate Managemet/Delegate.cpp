@@ -36,7 +36,8 @@ cin.ignore();
                 exportDelegateData();
                 break;
             case 2:
-                display();
+                exportDelegateData();
+                display(); 
                 break;
             case 3:
                 search();

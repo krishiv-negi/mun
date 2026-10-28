@@ -35,7 +35,7 @@ void exportDelegateData() {
             cout << "\nDatabase connection is not available!\n";
             return;
         }
-        ofstream file("delegate_data.txt");
+        ofstream file("../Data/delegate_data.txt",ios::out);
         if (!file.is_open()) {
             cout << "Cannot create delegate_data.txt\n";
             return;
