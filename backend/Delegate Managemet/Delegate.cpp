@@ -3,12 +3,11 @@
 #include "updateDelegate.cpp"
 #include "searchDelegate.cpp"
 #include"deleteDelegate.cpp"
-
 vector<Delegate> delegates;
 
-int main(){
+void delegateMenu(){
     int ch;
-    do{
+     do{
        cout << "\n";
 cout << "+--------------------------------------------------+\n";
 cout << "|              MUN MANAGEMENT SYSTEM               |\n";
@@ -53,5 +52,5 @@ cin.ignore();
         }
     }
     while(ch<6);
-    return 0;
+   
 }
