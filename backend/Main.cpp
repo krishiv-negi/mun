@@ -1,14 +1,12 @@
 #include <iostream>
-#include"committeemenu.h"
+
 #include"Delegate.cpp"
 
 
 using namespace std;
-
 int main()
 {
     int choice;
-
     do
     {
 cout << "+--------------------------------------------------+\n";
@@ -31,13 +29,13 @@ cout << "+------+-------------------------------------------+\n";
                 delegateMenu();
                 break;
             case 2:
-                cvMenu();
+               
                 break;
             case 3:
-                committeeMenu();
+               
                 break;
             case 4:
-                allocationMenu();
+               
                 break;
             case 0:
                 cout << "Exiting program...\n";
