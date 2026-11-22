@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <!-- File: frontend/public/home.html -->
 <html lang="en">
 <head>
@@ -11,20 +11,23 @@
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <style>
     :root {
-  --bg: linear-gradient(135deg, #f8fafc 0%, #eff6ff 50%, #f1f5f9 100%);
-  --card: rgba(255, 255, 255, 0.95);
-  --solid: #ffffff;
-  --text: #0f172a;
-  --muted: #475569;
-  --accent: #2563eb;
-  --accent-glow: rgba(37, 99, 235, 0.22);
-  --border: rgba(15, 23, 42, 0.12);
-  --track: rgba(15, 23, 42, 0.05);
-  --danger: #dc2626;
-  --danger-bg: rgba(239, 68, 68, 0.12);
-  --success: #059669;
-  --success-bg: rgba(16, 185, 129, 0.12);
-}
+      --bg: linear-gradient(135deg, #070b14 0%, #0f172a 50%, #0b1120 100%);
+      --card: rgba(23, 31, 48, 0.78);
+      --solid: #171f30;
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+      --accent: #3b82f6;
+      --accent-2: #60a5fa;
+      --accent-glow: rgba(59, 130, 246, 0.3);
+      --gold: #f59e0b;
+      --border: rgba(255, 255, 255, 0.09);
+      --border-accent: rgba(59, 130, 246, 0.35);
+      --track: rgba(255, 255, 255, 0.05);
+      --success: #10b981;
+      --success-bg: rgba(16, 185, 129, 0.14);
+      --danger: #ef4444;
+      --danger-bg: rgba(239, 68, 68, 0.14);
+    }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
@@ -37,15 +40,14 @@
     }
 
     /* Top Navigation Bar */
-   .navbar-outer {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
-  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.06);
-}
+    .navbar-outer {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(11, 15, 25, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
     .navbar {
       max-width: 1200px;
       margin: 0 auto;
@@ -116,10 +118,9 @@
     }
     .btn:hover { transform: translateY(-1px); }
     .btn-ghost {
-  background: #ffffff;
-  color: #0f172a;
-  border-color: rgba(15, 23, 42, 0.16);
-}
+      background: var(--track);
+      color: var(--text);
+    }
     .btn-ghost:hover { border-color: var(--border-accent); background: rgba(59,130,246,0.12); }
     .btn-primary {
       background: linear-gradient(135deg, var(--accent), #1d4ed8);
@@ -160,7 +161,7 @@
       border-radius: 999px;
       background: rgba(59, 130, 246, 0.14);
       border: 1px solid var(--border-accent);
-      color: #1d4ed8;
+      color: #93c5fd;
       font-size: 0.78rem;
       font-weight: 700;
       text-transform: uppercase;
@@ -229,18 +230,17 @@
       flex-wrap: wrap;
     }
     .hero-tag {
-  background: rgba(255, 255, 255, 0.92);
-  color: #0f172a;
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(15, 23, 42, 0.12);
-  padding: 8px 13px;
-  border-radius: 12px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-}
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
+      padding: 8px 13px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
     .dot-live {
       width: 8px; height: 8px; border-radius: 50%; background: var(--success);
       box-shadow: 0 0 10px var(--success);
@@ -322,7 +322,7 @@
       padding: 3px 9px;
       border-radius: 999px;
       background: rgba(59,130,246,0.16);
-      color: #1d4ed8;
+      color: #93c5fd;
       margin-bottom: 8px;
     }
     .photo-body h3 { font-size: 1.06rem; font-weight: 800; margin-bottom: 6px; }
@@ -405,6 +405,73 @@
     .portal-card li { display: flex; align-items: flex-start; gap: 8px; }
     .portal-card li i { color: var(--accent-2); margin-top: 3px; }
 
+    /* About MUN Explanation Section */
+    .mun-intro-box {
+      padding: 26px 28px;
+      border-radius: 18px;
+      margin-bottom: 20px;
+      border: 1px solid var(--border);
+      background: var(--card);
+    }
+    .mun-intro-box p {
+      color: var(--muted);
+      font-size: 0.96rem;
+      line-height: 1.7;
+      margin-top: 8px;
+    }
+    .mun-pillars {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .mun-pillar {
+      padding: 20px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: var(--card);
+    }
+    .mun-pillar-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 11px;
+      background: rgba(59, 130, 246, 0.14);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+    }
+    .mun-pillar h3 {
+      font-size: 1rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .mun-pillar p {
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+    .mun-glossary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .glossary-item {
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: var(--track);
+      border: 1px solid var(--border);
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+    .glossary-item strong {
+      display: block;
+      color: var(--text);
+      font-size: 0.88rem;
+      margin-bottom: 3px;
+    }
+
     footer {
       border-top: 1px solid var(--border);
       margin-top: 36px;
@@ -421,8 +488,671 @@
     }
     .hidden { display: none !important; }
   </style>
+  <link rel="stylesheet" href="/theme.css">
+  <script src="/theme.js"></script>
+  <style id="mun-color-anim-styles">
+    /* ===== Model United Nations (MUN) Color & Animation Enhancements ===== */
+    @keyframes munGradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes munFadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes munFloatIcon {
+      0%, 100% { transform: translateY(0px); }
+      50%      { transform: translateY(-4px); }
+    }
+    @keyframes munBarGlow {
+      0%, 100% { opacity: 0.85; transform: scaleX(1); }
+      50%      { opacity: 1;    transform: scaleX(1.08); }
+    }
+
+    #about-mun .sec-head {
+      animation: munFadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    /* Animated gradient heading */
+    #about-mun .mun-main-title {
+      font-size: clamp(1.85rem, 3.2vw, 2.55rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      display: inline-block;
+      background: linear-gradient(90deg, #3b82f6, #06b6d4, #10b981, #a855f7, #f59e0b, #3b82f6);
+      background-size: 260% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent !important;
+      animation: munGradientFlow 6s ease infinite;
+      margin-bottom: 10px;
+    }
+    html[data-theme="light"] #about-mun .mun-main-title {
+      background: linear-gradient(90deg, #1d4ed8, #0284c7, #059669, #7c3aed, #d97706, #1d4ed8);
+      background-size: 260% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent !important;
+    }
+    #about-mun .mun-title-bar {
+      width: 96px;
+      height: 4px;
+      border-radius: 999px;
+      margin: 0 auto 14px;
+      background: linear-gradient(90deg, #3b82f6, #10b981, #a855f7, #f59e0b);
+      background-size: 200% auto;
+      animation: munGradientFlow 5s ease infinite, munBarGlow 3.2s ease-in-out infinite;
+    }
+
+    /* Animated Colorful Intro Card */
+    #about-mun .mun-intro-box {
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      animation: munFadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+    }
+    #about-mun .mun-intro-box::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 4px;
+      background: linear-gradient(90deg, #3b82f6, #06b6d4, #10b981, #a855f7, #f59e0b);
+      background-size: 220% auto;
+      animation: munGradientFlow 6s linear infinite;
+    }
+    html[data-theme="dark"] #about-mun .mun-intro-box {
+      background: linear-gradient(135deg, rgba(30, 58, 138, 0.24) 0%, rgba(23, 31, 48, 0.9) 55%, rgba(88, 28, 135, 0.2) 100%) !important;
+      border-color: rgba(96, 165, 250, 0.28) !important;
+    }
+    html[data-theme="light"] #about-mun .mun-intro-box {
+      background: linear-gradient(135deg, #eff6ff 0%, #ffffff 55%, #f5f3ff 100%) !important;
+      border-color: rgba(37, 99, 235, 0.22) !important;
+    }
+    #about-mun .mun-intro-box:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 32px rgba(59, 130, 246, 0.18) !important;
+    }
+
+    /* Colored keyword highlights inside explanation text */
+    .hl-blue   { color: #60a5fa; font-weight: 700; }
+    .hl-green  { color: #34d399; font-weight: 700; }
+    .hl-purple { color: #c084fc; font-weight: 700; }
+    .hl-amber  { color: #fbbf24; font-weight: 700; }
+    html[data-theme="light"] .hl-blue   { color: #1d4ed8; }
+    html[data-theme="light"] .hl-green  { color: #047857; }
+    html[data-theme="light"] .hl-purple { color: #7c3aed; }
+    html[data-theme="light"] .hl-amber  { color: #b45309; }
+
+    .un-chip {
+      display: inline-block;
+      padding: 1px 8px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      margin: 0 2px;
+      transition: transform 0.2s ease;
+    }
+    .un-chip:hover { transform: translateY(-1px) scale(1.04); }
+    .un-chip.c-blue   { background: rgba(59, 130, 246, 0.18); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.35); }
+    .un-chip.c-purple { background: rgba(168, 85, 247, 0.18); color: #d8b4fe; border: 1px solid rgba(168, 85, 247, 0.35); }
+    .un-chip.c-green  { background: rgba(16, 185, 129, 0.18); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.35); }
+    html[data-theme="light"] .un-chip.c-blue   { background: #dbeafe; color: #1d4ed8; border-color: #93c5fd; }
+    html[data-theme="light"] .un-chip.c-purple { background: #f3e8ff; color: #7e22ce; border-color: #d8b4fe; }
+    html[data-theme="light"] .un-chip.c-green  { background: #d1fae5; color: #047857; border-color: #6ee7b7; }
+
+    /* 4 Distinctly Colored & Animated Pillar Cards */
+    #about-mun .mun-pillar {
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s ease, border-color 0.28s ease;
+      animation: munFadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    #about-mun .mun-pillar:nth-child(1) { animation-delay: 0.14s; }
+    #about-mun .mun-pillar:nth-child(2) { animation-delay: 0.24s; }
+    #about-mun .mun-pillar:nth-child(3) { animation-delay: 0.34s; }
+    #about-mun .mun-pillar:nth-child(4) { animation-delay: 0.44s; }
+
+    #about-mun .mun-pillar::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 3.5px;
+    }
+    #about-mun .mun-pillar:hover {
+      transform: translateY(-6px);
+    }
+    #about-mun .mun-pillar-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      font-size: 1.35rem;
+      transition: transform 0.3s ease;
+      animation: munFloatIcon 3.8s ease-in-out infinite;
+    }
+    #about-mun .mun-pillar:nth-child(2) .mun-pillar-icon { animation-delay: 0.5s; }
+    #about-mun .mun-pillar:nth-child(3) .mun-pillar-icon { animation-delay: 1.0s; }
+    #about-mun .mun-pillar:nth-child(4) .mun-pillar-icon { animation-delay: 1.5s; }
+    #about-mun .mun-pillar:hover .mun-pillar-icon {
+      animation: none;
+      transform: scale(1.12) rotate(-5deg);
+    }
+
+    /* Pillar 1: Blue */
+    #about-mun .mun-pillar.p-blue::before { background: linear-gradient(90deg, #3b82f6, #38bdf8); }
+    html[data-theme="dark"] #about-mun .mun-pillar.p-blue {
+      background: linear-gradient(160deg, rgba(37, 99, 235, 0.18), rgba(23, 31, 48, 0.92)) !important;
+      border-color: rgba(59, 130, 246, 0.32) !important;
+    }
+    html[data-theme="light"] #about-mun .mun-pillar.p-blue {
+      background: linear-gradient(160deg, #eff6ff, #ffffff) !important;
+      border-color: rgba(37, 99, 235, 0.25) !important;
+    }
+    #about-mun .mun-pillar.p-blue:hover { box-shadow: 0 14px 30px rgba(59, 130, 246, 0.24) !important; }
+    #about-mun .mun-pillar.p-blue .mun-pillar-icon { background: linear-gradient(135deg, #3b82f6, #0284c7); color: #ffffff; box-shadow: 0 6px 14px rgba(59, 130, 246, 0.35); }
+    #about-mun .mun-pillar.p-blue h3 { color: #60a5fa !important; }
+    html[data-theme="light"] #about-mun .mun-pillar.p-blue h3 { color: #1d4ed8 !important; }
+
+    /* Pillar 2: Emerald */
+    #about-mun .mun-pillar.p-green::before { background: linear-gradient(90deg, #10b981, #14b8a6); }
+    html[data-theme="dark"] #about-mun .mun-pillar.p-green {
+      background: linear-gradient(160deg, rgba(16, 185, 129, 0.18), rgba(23, 31, 48, 0.92)) !important;
+      border-color: rgba(16, 185, 129, 0.32) !important;
+    }
+    html[data-theme="light"] #about-mun .mun-pillar.p-green {
+      background: linear-gradient(160deg, #ecfdf5, #ffffff) !important;
+      border-color: rgba(16, 185, 129, 0.26) !important;
+    }
+    #about-mun .mun-pillar.p-green:hover { box-shadow: 0 14px 30px rgba(16, 185, 129, 0.24) !important; }
+    #about-mun .mun-pillar.p-green .mun-pillar-icon { background: linear-gradient(135deg, #10b981, #0d9488); color: #ffffff; box-shadow: 0 6px 14px rgba(16, 185, 129, 0.35); }
+    #about-mun .mun-pillar.p-green h3 { color: #34d399 !important; }
+    html[data-theme="light"] #about-mun .mun-pillar.p-green h3 { color: #047857 !important; }
+
+    /* Pillar 3: Purple */
+    #about-mun .mun-pillar.p-purple::before { background: linear-gradient(90deg, #8b5cf6, #ec4899); }
+    html[data-theme="dark"] #about-mun .mun-pillar.p-purple {
+      background: linear-gradient(160deg, rgba(139, 92, 246, 0.18), rgba(23, 31, 48, 0.92)) !important;
+      border-color: rgba(168, 85, 247, 0.32) !important;
+    }
+    html[data-theme="light"] #about-mun .mun-pillar.p-purple {
+      background: linear-gradient(160deg, #f5f3ff, #ffffff) !important;
+      border-color: rgba(139, 92, 246, 0.26) !important;
+    }
+    #about-mun .mun-pillar.p-purple:hover { box-shadow: 0 14px 30px rgba(139, 92, 246, 0.24) !important; }
+    #about-mun .mun-pillar.p-purple .mun-pillar-icon { background: linear-gradient(135deg, #8b5cf6, #db2777); color: #ffffff; box-shadow: 0 6px 14px rgba(139, 92, 246, 0.35); }
+    #about-mun .mun-pillar.p-purple h3 { color: #c084fc !important; }
+    html[data-theme="light"] #about-mun .mun-pillar.p-purple h3 { color: #6d28d9 !important; }
+
+    /* Pillar 4: Amber / Gold */
+    #about-mun .mun-pillar.p-amber::before { background: linear-gradient(90deg, #f59e0b, #f97316); }
+    html[data-theme="dark"] #about-mun .mun-pillar.p-amber {
+      background: linear-gradient(160deg, rgba(245, 158, 11, 0.18), rgba(23, 31, 48, 0.92)) !important;
+      border-color: rgba(245, 158, 11, 0.32) !important;
+    }
+    html[data-theme="light"] #about-mun .mun-pillar.p-amber {
+      background: linear-gradient(160deg, #fffbeb, #ffffff) !important;
+      border-color: rgba(245, 158, 11, 0.3) !important;
+    }
+    #about-mun .mun-pillar.p-amber:hover { box-shadow: 0 14px 30px rgba(245, 158, 11, 0.24) !important; }
+    #about-mun .mun-pillar.p-amber .mun-pillar-icon { background: linear-gradient(135deg, #f59e0b, #ea580c); color: #ffffff; box-shadow: 0 6px 14px rgba(245, 158, 11, 0.35); }
+    #about-mun .mun-pillar.p-amber h3 { color: #fbbf24 !important; }
+    html[data-theme="light"] #about-mun .mun-pillar.p-amber h3 { color: #b45309 !important; }
+
+    /* Color-Coded Animated Glossary Cards */
+    #about-mun .glossary-item {
+      border-left-width: 4px !important;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      animation: munFadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both;
+    }
+    #about-mun .glossary-item:hover {
+      transform: translateY(-4px);
+    }
+    #about-mun .glossary-item strong {
+      display: flex !important;
+      align-items: center;
+      gap: 6px;
+    }
+
+    #about-mun .glossary-item.g-blue   { border-left-color: #3b82f6 !important; }
+    #about-mun .glossary-item.g-green  { border-left-color: #10b981 !important; }
+    #about-mun .glossary-item.g-purple { border-left-color: #8b5cf6 !important; }
+    #about-mun .glossary-item.g-amber  { border-left-color: #f59e0b !important; }
+
+    html[data-theme="dark"] #about-mun .glossary-item.g-blue   { background: rgba(59, 130, 246, 0.1) !important; }
+    html[data-theme="dark"] #about-mun .glossary-item.g-green  { background: rgba(16, 185, 129, 0.1) !important; }
+    html[data-theme="dark"] #about-mun .glossary-item.g-purple { background: rgba(139, 92, 246, 0.1) !important; }
+    html[data-theme="dark"] #about-mun .glossary-item.g-amber  { background: rgba(245, 158, 11, 0.1) !important; }
+
+    html[data-theme="light"] #about-mun .glossary-item.g-blue   { background: #eff6ff !important; }
+    html[data-theme="light"] #about-mun .glossary-item.g-green  { background: #ecfdf5 !important; }
+    html[data-theme="light"] #about-mun .glossary-item.g-purple { background: #f5f3ff !important; }
+    html[data-theme="light"] #about-mun .glossary-item.g-amber  { background: #fffbeb !important; }
+
+    #about-mun .glossary-item.g-blue strong   { color: #60a5fa !important; }
+    #about-mun .glossary-item.g-green strong  { color: #34d399 !important; }
+    #about-mun .glossary-item.g-purple strong { color: #c084fc !important; }
+    #about-mun .glossary-item.g-amber strong  { color: #fbbf24 !important; }
+
+    html[data-theme="light"] #about-mun .glossary-item.g-blue strong   { color: #1d4ed8 !important; }
+    html[data-theme="light"] #about-mun .glossary-item.g-green strong  { color: #047857 !important; }
+    html[data-theme="light"] #about-mun .glossary-item.g-purple strong { color: #6d28d9 !important; }
+    html[data-theme="light"] #about-mun .glossary-item.g-amber strong  { color: #b45309 !important; }
+
+    @media (prefers-reduced-motion: reduce) {
+      #about-mun *, #about-mun *::before {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+  <style id="mun-whole-page-anim">
+    /* ===== Whole-Page Ambient Background & Scroll Progress ===== */
+    #scrollProgress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      z-index: 9999;
+      background: linear-gradient(90deg, #3b82f6, #06b6d4, #10b981, #a855f7, #f59e0b);
+      background-size: 200% auto;
+      animation: munGradientFlow 5s linear infinite;
+      box-shadow: 0 0 10px rgba(59, 130, 246, 0.55);
+      transition: width 0.08s linear;
+      pointer-events: none;
+    }
+
+    .bg-orbs {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .bg-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(85px);
+      opacity: 0.22;
+      will-change: transform;
+    }
+    .bg-orb-1 {
+      width: 440px;
+      height: 440px;
+      top: -110px;
+      left: -120px;
+      background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+      animation: orbDrift1 16s ease-in-out infinite alternate;
+    }
+    .bg-orb-2 {
+      width: 480px;
+      height: 480px;
+      bottom: -140px;
+      right: -130px;
+      background: radial-gradient(circle, #8b5cf6 0%, transparent 70%);
+      animation: orbDrift2 19s ease-in-out infinite alternate;
+    }
+    .bg-orb-3 {
+      width: 340px;
+      height: 340px;
+      top: 42%;
+      left: 52%;
+      background: radial-gradient(circle, #10b981 0%, transparent 72%);
+      opacity: 0.13;
+      animation: orbDrift3 22s ease-in-out infinite alternate;
+    }
+    html[data-theme="light"] .bg-orb { opacity: 0.16; }
+    html[data-theme="light"] .bg-orb-3 { opacity: 0.1; }
+
+    @keyframes orbDrift1 {
+      0%   { transform: translate(0px, 0px) scale(1); }
+      100% { transform: translate(75px, 60px) scale(1.12); }
+    }
+    @keyframes orbDrift2 {
+      0%   { transform: translate(0px, 0px) scale(1); }
+      100% { transform: translate(-80px, -65px) scale(1.14); }
+    }
+    @keyframes orbDrift3 {
+      0%   { transform: translate(-40px, -30px) scale(0.95); }
+      100% { transform: translate(55px, 45px) scale(1.08); }
+    }
+
+    main.container, footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== Navbar & Button Micro-Animations ===== */
+    .brand-icon {
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+    }
+    .brand:hover .brand-icon {
+      transform: rotate(14deg) scale(1.08);
+      box-shadow: 0 8px 22px var(--accent-glow);
+    }
+    .nav-links a {
+      position: relative;
+      padding: 4px 2px;
+    }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 100%;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #3b82f6, #10b981);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
+
+    .btn-primary {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 75%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.32), transparent);
+      transform: skewX(-20deg);
+      transition: left 0.65s ease;
+      pointer-events: none;
+    }
+    .btn-primary:hover::after {
+      left: 145%;
+    }
+
+    /* ===== Hero Text & Live Pulse ===== */
+    .hero h1 span {
+      background-size: 220% auto !important;
+      animation: munGradientFlow 6s ease infinite;
+    }
+    .eyebrow {
+      animation: munFadeUp 0.6s ease both;
+    }
+    .eyebrow i {
+      animation: munFloatIcon 2.6s ease-in-out infinite;
+    }
+    .dot-live {
+      position: relative;
+    }
+    .dot-live::after {
+      content: "";
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid var(--success);
+      animation: pulseRing 1.8s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+    }
+    @keyframes pulseRing {
+      0%   { transform: scale(0.7); opacity: 0.9; }
+      100% { transform: scale(2.1); opacity: 0; }
+    }
+
+    /* ===== Hero Auto-Changing Image Slideshow ===== */
+    .hero-visual {
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .hero-visual:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 28px 65px rgba(37, 99, 235, 0.25);
+    }
+    .hero-slides {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: #0d1424;
+    }
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transform: scale(1.03);
+      transition: opacity 0.95s ease-in-out, transform 4.8s ease-out;
+      pointer-events: none;
+    }
+    .hero-slide.active {
+      opacity: 1;
+      transform: scale(1.09);
+      z-index: 1;
+    }
+    .hero-overlay {
+      z-index: 3;
+      padding-bottom: 24px;
+    }
+    .slide-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 4;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.28) !important;
+      background: rgba(15, 23, 42, 0.62) !important;
+      color: #ffffff !important;
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0.78;
+      transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease;
+    }
+    .slide-nav-btn:hover {
+      opacity: 1;
+      background: rgba(37, 99, 235, 0.88) !important;
+      transform: translateY(-50%) scale(1.08);
+    }
+    .slide-nav-btn.prev { left: 12px; }
+    .slide-nav-btn.next { right: 12px; }
+
+    .slide-dots {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+    .slide-dot {
+      width: 8px;
+      height: 8px;
+      padding: 0;
+      border-radius: 999px;
+      border: 0 !important;
+      background: rgba(255, 255, 255, 0.45) !important;
+      cursor: pointer;
+      transition: width 0.3s ease, background 0.3s ease;
+    }
+    .slide-dot.active {
+      width: 24px;
+      background: #60a5fa !important;
+    }
+
+    .slide-progress-track {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 3.5px;
+      z-index: 5;
+      background: rgba(255, 255, 255, 0.16);
+    }
+    .slide-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #60a5fa, #34d399, #fbbf24);
+    }
+    .slide-progress-fill.running {
+      animation: heroProgress 4.2s linear forwards;
+    }
+    @keyframes heroProgress {
+      from { width: 0%; }
+      to   { width: 100%; }
+    }
+
+    /* ===== Gallery Changing Image Stages ===== */
+    .photo-stage {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: #0d1424;
+    }
+    .photo-stage img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transform: scale(1.02);
+      transition: opacity 0.9s ease-in-out, transform 5.2s ease-out;
+    }
+    .photo-stage img.active {
+      opacity: 1;
+      transform: scale(1.07);
+      z-index: 1;
+    }
+    .photo-card:hover .photo-stage img.active {
+      transform: scale(1.12);
+    }
+    .stage-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 2;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      background: rgba(15, 23, 42, 0.72);
+      color: #f8fafc;
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* ===== Interactive Hover Animations for Stats, Committees, Steps & Portals ===== */
+    .stat-card {
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s ease, border-color 0.28s ease;
+    }
+    .stat-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 3px;
+      background: linear-gradient(90deg, #3b82f6, #10b981);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s ease;
+    }
+    .stat-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--border-accent) !important;
+      box-shadow: 0 14px 28px rgba(37, 99, 235, 0.16) !important;
+    }
+    .stat-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .comm-pill-card {
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .comm-pill-card:hover {
+      transform: translateY(-4px) translateX(2px);
+      border-color: var(--border-accent) !important;
+      box-shadow: 0 12px 26px rgba(37, 99, 235, 0.15) !important;
+    }
+
+    .step-card {
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.28s ease, box-shadow 0.28s ease;
+    }
+    .step-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-accent) !important;
+      box-shadow: 0 16px 32px rgba(37, 99, 235, 0.18) !important;
+    }
+    .step-num {
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+    }
+    .step-card:hover .step-num {
+      transform: scale(1.12) rotate(-6deg);
+      box-shadow: 0 8px 18px var(--accent-glow);
+    }
+
+    .portal-card {
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .portal-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-accent) !important;
+      box-shadow: 0 18px 36px rgba(37, 99, 235, 0.18) !important;
+    }
+    .portal-card h3 i {
+      transition: transform 0.3s ease;
+    }
+    .portal-card:hover h3 i {
+      transform: scale(1.18) rotate(-6deg);
+    }
+
+    /* ===== Scroll-Reveal System Across Whole Page ===== */
+    .reveal-ready {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-ready.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #scrollProgress, .bg-orb, .hero-slide, .photo-stage img, .dot-live::after,
+      .slide-progress-fill.running, .reveal-ready, .btn-primary::after {
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .hero-slide:not(.active), .photo-stage img:not(.active) {
+        opacity: 0 !important;
+      }
+    }
+  </style>
 </head>
 <body>
+<div id="scrollProgress"></div>
+<div class="bg-orbs" aria-hidden="true">
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
+  <div class="bg-orb bg-orb-3"></div>
+</div>
 
 <!-- Top Navbar with Login & Sign Up at Upper Right -->
 <div class="navbar-outer">
@@ -433,6 +1163,7 @@
     </a>
 
     <div class="nav-links">
+      <a href="#about-mun">About MUN</a>
       <a href="#gallery">Conference Gallery</a>
       <a href="#committees">Open Committees</a>
       <a href="#workflow">How It Works</a>
@@ -448,6 +1179,74 @@
 </div>
 
 <main class="container">
+
+  <!-- About MUN Explanation Section -->
+  <section id="about-mun">
+    <div class="sec-head">
+      <h2 class="mun-main-title">Model United Nations (MUN)</h2>
+      <div class="mun-title-bar"></div>
+      <p>An academic simulation of the United Nations where students step into the role of global diplomats to debate international crises and negotiate real-world solutions.</p>
+    </div>
+
+    <div class="card mun-intro-box">
+      <h3 style="font-size:1.12rem;font-weight:800;display:flex;align-items:center;gap:8px;">
+        <i class="ph ph-book-open" style="color:#38bdf8;font-size:1.28rem;"></i> Understanding the Conference
+      </h3>
+      <p>
+        In a <span class="hl-blue">Model United Nations (MUN)</span> conference, participating students—called <span class="hl-green">delegates</span>—are assigned a specific country or role (a <span class="hl-purple">portfolio</span>) inside a simulated UN body such as the <span class="un-chip c-blue">General Assembly (UNGA)</span>, <span class="un-chip c-purple">Security Council (UNSC)</span>, or <span class="un-chip c-green">Human Rights Council (UNHRC)</span>. Delegates research their country's foreign policy, deliver speeches, build alliances during caucuses, and co-author formal <span class="hl-amber">resolutions</span> to address pressing global challenges while developing leadership, public speaking, and diplomatic negotiation skills.
+      </p>
+    </div>
+
+    <div class="mun-pillars">
+      <div class="card mun-pillar p-blue">
+        <div class="mun-pillar-icon"><i class="ph ph-buildings"></i></div>
+        <h3>Committees &amp; Agendas</h3>
+        <p>Each committee simulates a real UN council focused on a specific international agenda, from peacekeeping to climate policy.</p>
+      </div>
+
+      <div class="card mun-pillar p-green">
+        <div class="mun-pillar-icon"><i class="ph ph-flag"></i></div>
+        <h3>Country Portfolios</h3>
+        <p>Delegates represent an assigned nation's official stance rather than personal opinions, mastering global geopolitics and research.</p>
+      </div>
+
+      <div class="card mun-pillar p-purple">
+        <div class="mun-pillar-icon"><i class="ph ph-chats-circle"></i></div>
+        <h3>Debate &amp; Caucuses</h3>
+        <p>Sessions combine formal speeches, moderated topic debates, and unmoderated lobbying to draft consensus-driven working papers.</p>
+      </div>
+
+      <div class="card mun-pillar p-amber">
+        <div class="mun-pillar-icon"><i class="ph ph-trophy"></i></div>
+        <h3>Resolutions &amp; Recognition</h3>
+        <p>Committees vote on final draft resolutions, and outstanding delegates earn awards such as Best Delegate and High Commendation.</p>
+      </div>
+    </div>
+
+    <div class="card mun-intro-box" style="margin-bottom:0;">
+      <h3 style="font-size:1rem;font-weight:800;margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+        <i class="ph ph-certificate" style="color:#f59e0b;font-size:1.25rem;"></i> Key Terms Used in This Portal
+      </h3>
+      <div class="mun-glossary">
+        <div class="glossary-item g-blue">
+          <strong><i class="ph ph-user-circle"></i> Delegate</strong>
+          A registered student participant representing a country or portfolio in a committee.
+        </div>
+        <div class="glossary-item g-green">
+          <strong><i class="ph ph-buildings"></i> Committee</strong>
+          A simulated UN council (e.g., UNGA, UNSC) with its own seat capacity and minimum MUN requirement.
+        </div>
+        <div class="glossary-item g-purple">
+          <strong><i class="ph ph-flag"></i> Portfolio</strong>
+          The specific country or seat allocated to a delegate inside a committee.
+        </div>
+        <div class="glossary-item g-amber">
+          <strong><i class="ph ph-seal-check"></i> MUN Eligibility Score</strong>
+          Your verified past MUN count extracted from your CV, which determines which committee tiers you can request.
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Hero Banner -->
   <section class="hero">
@@ -468,11 +1267,29 @@
       </div>
     </div>
 
-    <div class="hero-visual">
-      <img id="imgHero" src="/images/mun-hero.jpg" alt="Model United Nations General Assembly Hall">
+    <div class="hero-visual" id="heroCarousel">
+      <div class="hero-slides">
+        <img class="hero-slide active" data-img-key="mun-hero" src="/images/mun-hero.jpg" alt="Model United Nations General Assembly Hall">
+        <img class="hero-slide" data-img-key="mun-debate" src="/images/mun-debate.jpg" alt="University Delegates in Model UN Debate">
+        <img class="hero-slide" data-img-key="mun-council" src="/images/mun-council.jpg" alt="Model United Nations Security Council Table">
+      </div>
+
+      <button type="button" class="slide-nav-btn prev" id="heroPrev" aria-label="Previous image"><i class="ph ph-caret-left"></i></button>
+      <button type="button" class="slide-nav-btn next" id="heroNext" aria-label="Next image"><i class="ph ph-caret-right"></i></button>
+
+      <div class="slide-dots" id="heroDots" aria-label="Slide selector">
+        <button type="button" class="slide-dot active" data-slide="0" aria-label="Slide 1"></button>
+        <button type="button" class="slide-dot" data-slide="1" aria-label="Slide 2"></button>
+        <button type="button" class="slide-dot" data-slide="2" aria-label="Slide 3"></button>
+      </div>
+
       <div class="hero-overlay">
-        <div class="hero-tag"><span class="dot-live"></span> Allocations Open Now</div>
+        <div class="hero-tag"><span class="dot-live"></span> <span id="heroCaption">General Assembly Hall &bull; Allocations Open</span></div>
         <div class="hero-tag"><i class="ph ph-shield-check" style="color:#60a5fa;"></i> Role-Based Dual Portal</div>
+      </div>
+
+      <div class="slide-progress-track">
+        <div class="slide-progress-fill running" id="heroProgress"></div>
       </div>
     </div>
   </section>
@@ -491,9 +1308,14 @@
       <h2>Inside the Conference</h2>
       <p>Built for authentic diplomatic debate, transparent eligibility screening, and fair seat allocation across every committee.</p>
     </div>
-    <div class="gallery-grid">
+    <div class="gallery-grid" id="galleryGrid">
       <div class="photo-card">
-        <img id="imgGal1" src="/images/mun-hero.jpg" alt="General Assembly Hall">
+        <div class="photo-stage" data-offset="0">
+          <img class="active" data-img-key="mun-hero" src="/images/mun-hero.jpg" alt="General Assembly Hall">
+          <img data-img-key="mun-debate" src="/images/mun-debate.jpg" alt="Delegates in Debate">
+          <img data-img-key="mun-council" src="/images/mun-council.jpg" alt="Security Council Table">
+          <span class="stage-badge"><i class="ph ph-images"></i> Live View</span>
+        </div>
         <div class="photo-body">
           <span class="photo-chip">General Assembly</span>
           <h3>Global Diplomatic Assemblies</h3>
@@ -502,7 +1324,12 @@
       </div>
 
       <div class="photo-card">
-        <img id="imgGal2" src="/images/mun-debate.jpg" alt="Delegates in Debate">
+        <div class="photo-stage" data-offset="1">
+          <img data-img-key="mun-hero" src="/images/mun-hero.jpg" alt="General Assembly Hall">
+          <img class="active" data-img-key="mun-debate" src="/images/mun-debate.jpg" alt="Delegates in Debate">
+          <img data-img-key="mun-council" src="/images/mun-council.jpg" alt="Security Council Table">
+          <span class="stage-badge"><i class="ph ph-images"></i> Live View</span>
+        </div>
         <div class="photo-body">
           <span class="photo-chip">Delegate Experience</span>
           <h3>Automated CV Score Verification</h3>
@@ -511,7 +1338,12 @@
       </div>
 
       <div class="photo-card">
-        <img id="imgGal3" src="/images/mun-council.jpg" alt="Security Council Table">
+        <div class="photo-stage" data-offset="2">
+          <img data-img-key="mun-hero" src="/images/mun-hero.jpg" alt="General Assembly Hall">
+          <img data-img-key="mun-debate" src="/images/mun-debate.jpg" alt="Delegates in Debate">
+          <img class="active" data-img-key="mun-council" src="/images/mun-council.jpg" alt="Security Council Table">
+          <span class="stage-badge"><i class="ph ph-images"></i> Live View</span>
+        </div>
         <div class="photo-body">
           <span class="photo-chip">Security Council &amp; Executive</span>
           <h3>Merit-Based Portfolio Allocation</h3>
@@ -581,9 +1413,9 @@
           <li><i class="ph ph-check"></i> Live analytics dashboard &amp; 9-option Committee Management menu</li>
           <li><i class="ph ph-check"></i> Set committee MUN eligibility rules &amp; portfolio seat capacities</li>
           <li><i class="ph ph-check"></i> Approve/Reject delegate requests or run C++ Auto-Allocate</li>
-          <li><i class="ph ph-check"></i> Full Delegate Roster CRUD &amp; standalone CV Analyzer</li>
+          <li><i class="ph ph-check"></i> Full Delegate Roster CRUD &amp; Search</li>
         </ul>
-        <a href="/login.html" class="btn btn-ghost"><i class="ph ph-sign-in"></i> Admin Login</a>
+        <a href="/login.html" class="btn btn-primary"><i class="ph ph-sign-in"></i> Admin Login</a>
       </div>
     </div>
   </section>
@@ -595,7 +1427,7 @@
     <div><strong>MUN Management System</strong> &bull; Full-Stack C++17, Node.js &amp; MySQL Platform</div>
     <div style="display:flex;gap:16px;">
       <a href="/login.html" style="color:var(--muted);text-decoration:none;font-weight:600;">Login</a>
-      <a href="/login.html?tab=register" style="color:var(--accent-2);text-decoration:none;font-weight:700;">Sign up</a>
+      <a href="/login.html?tab=register" style="color:var(--accent-2);text-decoration:none;font-weight:700;">Sign Up</a>
     </div>
   </div>
 </footer>
@@ -622,24 +1454,174 @@ function makeSvgFallback(title, subtitle, c1, c2) {
   return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
 }
 
-function wireImg(id, baseName, title, sub, c1, c2) {
-  const img = document.getElementById(id);
-  if (!img) return;
+const IMG_META = {
+  "mun-hero":    ["General Assembly Hall", "Live Committee Capacity & Seat Tracking", "#0f172a", "#1d4ed8"],
+  "mun-debate":  ["Delegate Debate & Diplomacy", "Automated C++ CV Score Verification", "#111827", "#0f766e"],
+  "mun-council": ["Security Council Session", "Experience-Based Merit Allocation", "#0f172a", "#4338ca"],
+};
+
+// Wire .jpg -> .png -> SVG fallback for every slideshow & gallery image
+document.querySelectorAll("img[data-img-key]").forEach((img) => {
+  const key = img.dataset.imgKey;
+  const meta = IMG_META[key] || ["Model United Nations", "MUN Management System", "#0f172a", "#1e3a8a"];
   img.onerror = function () {
     if (!this.dataset.triedPng) {
       this.dataset.triedPng = "1";
-      this.src = `/images/${baseName}.png`;
+      this.src = `/images/${key}.png`;
     } else {
       this.onerror = null;
-      this.src = makeSvgFallback(title, sub, c1, c2);
+      this.src = makeSvgFallback(meta[0], meta[1], meta[2], meta[3]);
     }
   };
+});
+
+// ================= HERO AUTO-CHANGING IMAGE CAROUSEL =================
+(function initHeroSlideshow() {
+  const carousel = document.getElementById("heroCarousel");
+  if (!carousel) return;
+  const slides = Array.from(carousel.querySelectorAll(".hero-slide"));
+  const dots = Array.from(carousel.querySelectorAll(".slide-dot"));
+  const captionEl = document.getElementById("heroCaption");
+  const progressEl = document.getElementById("heroProgress");
+  const captions = [
+    "General Assembly Hall \u2022 Allocations Open",
+    "Delegate Debate \u2022 Automated CV Verification",
+    "Security Council \u2022 Merit-Based Seat Allocation"
+  ];
+
+  let idx = 0;
+  let timer = null;
+  let paused = false;
+  const INTERVAL = 4200;
+
+  function restartProgress() {
+    if (!progressEl) return;
+    progressEl.classList.remove("running");
+    void progressEl.offsetWidth;
+    if (!paused) progressEl.classList.add("running");
+  }
+
+  function showSlide(nextIdx) {
+    idx = (nextIdx + slides.length) % slides.length;
+    slides.forEach((s, i) => s.classList.toggle("active", i === idx));
+    dots.forEach((d, i) => d.classList.toggle("active", i === idx));
+    if (captionEl) captionEl.textContent = captions[idx] || captions[0];
+    restartProgress();
+  }
+
+  function startAuto() {
+    clearInterval(timer);
+    timer = setInterval(() => {
+      if (!paused) showSlide(idx + 1);
+    }, INTERVAL);
+    restartProgress();
+  }
+
+  document.getElementById("heroPrev")?.addEventListener("click", () => { showSlide(idx - 1); startAuto(); });
+  document.getElementById("heroNext")?.addEventListener("click", () => { showSlide(idx + 1); startAuto(); });
+  dots.forEach((dot) => {
+    dot.addEventListener("click", () => {
+      showSlide(Number(dot.dataset.slide || 0));
+      startAuto();
+    });
+  });
+
+  carousel.addEventListener("mouseenter", () => {
+    paused = true;
+    if (progressEl) progressEl.classList.remove("running");
+  });
+  carousel.addEventListener("mouseleave", () => {
+    paused = false;
+    startAuto();
+  });
+
+  startAuto();
+})();
+
+// ================= GALLERY SYNCHRONIZED IMAGE ROTATION =================
+(function initGalleryRotation() {
+  const grid = document.getElementById("galleryGrid");
+  if (!grid) return;
+  const stages = Array.from(grid.querySelectorAll(".photo-stage"));
+  let step = 0;
+  let paused = false;
+
+  grid.addEventListener("mouseenter", () => { paused = true; });
+  grid.addEventListener("mouseleave", () => { paused = false; });
+
+  setInterval(() => {
+    if (paused) return;
+    step++;
+    stages.forEach((stage) => {
+      const imgs = Array.from(stage.querySelectorAll("img"));
+      const offset = Number(stage.dataset.offset || 0);
+      const activeIdx = (step + offset) % imgs.length;
+      imgs.forEach((im, i) => im.classList.toggle("active", i === activeIdx));
+    });
+  }, 5600);
+})();
+
+// ================= TOP SCROLL PROGRESS BAR =================
+(function initScrollBar() {
+  const bar = document.getElementById("scrollProgress");
+  if (!bar) return;
+  function updateBar() {
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    const pct = max > 0 ? Math.min(100, (window.scrollY / max) * 100) : 0;
+    bar.style.width = pct + "%";
+  }
+  window.addEventListener("scroll", updateBar, { passive: true });
+  updateBar();
+})();
+
+// ================= WHOLE-PAGE SCROLL-REVEAL ANIMATIONS =================
+let revealObserver = null;
+function attachReveal(elements, staggerMs = 80) {
+  const list = Array.from(elements || []);
+  if (!list.length) return;
+  if (!("IntersectionObserver" in window)) return;
+
+  if (!revealObserver) {
+    revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: "0px 0px -30px 0px" });
+  }
+
+  list.forEach((el, i) => {
+    if (el.classList.contains("reveal-ready")) return;
+    el.classList.add("reveal-ready");
+    el.style.transitionDelay = Math.min(i * staggerMs, 320) + "ms";
+    revealObserver.observe(el);
+  });
 }
 
-wireImg("imgHero", "mun-hero", "Model United Nations Assembly", "Place mun-hero.jpg in frontend/public/images/", "#0f172a", "#1e3a8a");
-wireImg("imgGal1", "mun-hero", "General Assembly Hall", "Live Committee Capacity & Seat Tracking", "#0f172a", "#1d4ed8");
-wireImg("imgGal2", "mun-debate", "Delegate Debate & Diplomacy", "Automated C++ CV Score Verification", "#111827", "#0f766e");
-wireImg("imgGal3", "mun-council", "Security Council Session", "Experience-Based Merit Allocation", "#0f172a", "#4338ca");
+attachReveal(document.querySelectorAll(".hero > div"), 100);
+attachReveal(document.querySelectorAll(".stat-card"), 85);
+attachReveal(document.querySelectorAll("#gallery .sec-head, #committees .sec-head, #workflow .sec-head, #portals .sec-head"), 60);
+attachReveal(document.querySelectorAll(".photo-card"), 110);
+attachReveal(document.querySelectorAll(".step-card"), 110);
+attachReveal(document.querySelectorAll(".portal-card"), 120);
+attachReveal(document.querySelectorAll("footer"), 60);
+
+// Smooth count-up animation for live database stats
+function animateCount(el, target) {
+  const end = Math.max(0, Number(target) || 0);
+  const duration = 850;
+  const startTime = performance.now();
+  function tick(now) {
+    const t = Math.min(1, (now - startTime) / duration);
+    const eased = 1 - Math.pow(1 - t, 3);
+    el.textContent = Math.round(eased * end);
+    if (t < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
 
 function esc(s) {
   return String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
@@ -664,10 +1646,10 @@ fetch("/api/auth/me").then(r => r.ok ? r.json() : null).then(d => {
 // Load live aggregate stats & featured committees from MySQL
 fetch("/api/public/stats").then(r => r.ok ? r.json() : null).then(s => {
   if (!s) return;
-  document.getElementById("stDelegates").textContent = s.delegates ?? 0;
-  document.getElementById("stCommittees").textContent = s.committees ?? 0;
-  document.getElementById("stPortfolios").textContent = s.portfolios ?? 0;
-  document.getElementById("stSeats").textContent = s.seats_left ?? 0;
+  animateCount(document.getElementById("stDelegates"), s.delegates ?? 0);
+  animateCount(document.getElementById("stCommittees"), s.committees ?? 0);
+  animateCount(document.getElementById("stPortfolios"), s.portfolios ?? 0);
+  animateCount(document.getElementById("stSeats"), s.seats_left ?? 0);
 
   const grid = document.getElementById("commPreview");
   const list = s.featured_committees || [];
@@ -688,6 +1670,7 @@ fetch("/api/public/stats").then(r => r.ok ? r.json() : null).then(s => {
       </span>
     </div>
   `).join("");
+  attachReveal(grid.querySelectorAll(".comm-pill-card"), 75);
 }).catch(() => {});
 </script>
 </body>

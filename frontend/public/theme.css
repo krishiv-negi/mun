@@ -1,0 +1,379 @@
+/* File: frontend/public/theme.css */
+/* Dual Light & Dark Theme System for All MUN Portal Pages */
+
+/* ================= LIGHT THEME ================= */
+html[data-theme="light"] {
+  --bg: linear-gradient(135deg, #f1f5f9 0%, #eff6ff 50%, #f8fafc 100%) !important;
+  --bg-gradient: linear-gradient(135deg, #f1f5f9 0%, #eff6ff 50%, #f8fafc 100%) !important;
+  --bg-body: #f8fafc !important;
+  --bg-main: #f8fafc !important;
+  --bg-card: rgba(255, 255, 255, 0.96) !important;
+  --card: rgba(255, 255, 255, 0.96) !important;
+  --solid: #ffffff !important;
+  --surface: #ffffff !important;
+  --text: #0f172a !important;
+  --muted: #475569 !important;
+  --accent: #2563eb !important;
+  --accent-2: #1d4ed8 !important;
+  --accent-glow: rgba(37, 99, 235, 0.2) !important;
+  --gold: #d97706 !important;
+  --border: rgba(15, 23, 42, 0.12) !important;
+  --border-accent: rgba(37, 99, 235, 0.35) !important;
+  --track: #f1f5f9 !important;
+  --success: #059669 !important;
+  --success-bg: rgba(16, 185, 129, 0.14) !important;
+  --warn: #d97706 !important;
+  --warn-bg: rgba(245, 158, 11, 0.16) !important;
+  --danger: #dc2626 !important;
+  --danger-bg: rgba(239, 68, 68, 0.12) !important;
+}
+
+html[data-theme="light"],
+html[data-theme="light"] body {
+  background: linear-gradient(135deg, #f1f5f9 0%, #eff6ff 50%, #f8fafc 100%) !important;
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+html[data-theme="light"] .navbar-outer {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.1) !important;
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.06) !important;
+}
+html[data-theme="light"] .navbar .brand { color: #0f172a !important; }
+html[data-theme="light"] .navbar nav a,
+html[data-theme="light"] .nav-links a { color: #475569 !important; }
+html[data-theme="light"] .navbar nav a:hover,
+html[data-theme="light"] .nav-links a:hover { color: #0f172a !important; background: #eff6ff !important; }
+html[data-theme="light"] .navbar nav a.on,
+html[data-theme="light"] .navbar nav a.active {
+  color: #1d4ed8 !important;
+  background: rgba(37, 99, 235, 0.12) !important;
+  border-color: rgba(37, 99, 235, 0.3) !important;
+}
+
+html[data-theme="light"] h1,
+html[data-theme="light"] h2,
+html[data-theme="light"] h3,
+html[data-theme="light"] h4 { color: #0f172a; }
+
+html[data-theme="light"] .sub,
+html[data-theme="light"] .subtitle,
+html[data-theme="light"] header p,
+html[data-theme="light"] .sec-head p { color: #475569 !important; }
+
+html[data-theme="light"] .card,
+html[data-theme="light"] .kpi,
+html[data-theme="light"] .stat-card,
+html[data-theme="light"] .panel,
+html[data-theme="light"] .portal-card,
+html[data-theme="light"] .step-card,
+html[data-theme="light"] .photo-card,
+html[data-theme="light"] .comm-pill-card,
+html[data-theme="light"] .comm-card,
+html[data-theme="light"] .menu-card,
+html[data-theme="light"] .mun-intro-box,
+html[data-theme="light"] .mun-pillar {
+  background: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06) !important;
+}
+
+html[data-theme="light"] .glossary-item {
+  background: #f1f5f9 !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+  color: #475569 !important;
+}
+html[data-theme="light"] .glossary-item strong { color: #0f172a !important; }
+
+html[data-theme="light"] .table-wrap { background: #ffffff !important; border-color: rgba(15, 23, 42, 0.1) !important; }
+html[data-theme="light"] th { background: #f1f5f9 !important; color: #334155 !important; }
+html[data-theme="light"] td { color: #0f172a; }
+html[data-theme="light"] tbody tr:hover { background: rgba(37, 99, 235, 0.04) !important; }
+
+html[data-theme="light"] dialog {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid rgba(15, 23, 42, 0.14) !important;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.18) !important;
+}
+html[data-theme="light"] dialog::backdrop { background: rgba(15, 23, 42, 0.45) !important; backdrop-filter: blur(4px); }
+
+html[data-theme="light"] input,
+html[data-theme="light"] select,
+html[data-theme="light"] textarea {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border-color: rgba(15, 23, 42, 0.18) !important;
+}
+html[data-theme="light"] option { background: #ffffff; color: #0f172a; }
+html[data-theme="light"] #drop { background: rgba(37, 99, 235, 0.04) !important; border-color: rgba(37, 99, 235, 0.38) !important; }
+
+html[data-theme="light"] button,
+html[data-theme="light"] .btn-ghost {
+  background: #ffffff;
+  color: #0f172a;
+  border-color: rgba(15, 23, 42, 0.15);
+}
+html[data-theme="light"] button.primary,
+html[data-theme="light"] .btn-primary {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8) !important;
+  color: #ffffff !important;
+  border-color: rgba(37, 99, 235, 0.4) !important;
+}
+html[data-theme="light"] button.success,
+html[data-theme="light"] button.ok,
+html[data-theme="light"] .btn-success,
+html[data-theme="light"] #btnAuto {
+  background: #ecfdf5 !important;
+  color: #047857 !important;
+  border-color: rgba(16, 185, 129, 0.4) !important;
+}
+html[data-theme="light"] button.success:hover:not(:disabled),
+html[data-theme="light"] button.ok:hover:not(:disabled),
+html[data-theme="light"] #btnAuto:hover:not(:disabled) {
+  background: #059669 !important;
+  color: #ffffff !important;
+}
+html[data-theme="light"] button.danger,
+html[data-theme="light"] button.logout,
+html[data-theme="light"] .btn-danger {
+  background: rgba(239, 68, 68, 0.1) !important;
+  color: #dc2626 !important;
+  border-color: rgba(239, 68, 68, 0.28) !important;
+}
+html[data-theme="light"] button.danger:hover:not(:disabled),
+html[data-theme="light"] button.logout:hover:not(:disabled),
+html[data-theme="light"] .btn-danger:hover:not(:disabled) {
+  background: #dc2626 !important;
+  color: #ffffff !important;
+}
+html[data-theme="light"] button.active:not(.primary) {
+  color: #1d4ed8 !important;
+  background: rgba(37, 99, 235, 0.12) !important;
+  border-color: #2563eb !important;
+}
+html[data-theme="light"] .tabs button { background: transparent !important; color: #475569 !important; border-color: transparent !important; }
+html[data-theme="light"] .tabs button.on { background: #ffffff !important; color: #0f172a !important; border-color: rgba(15, 23, 42, 0.12) !important; }
+
+html[data-theme="light"] code { background: #e2e8f0 !important; color: #0f172a !important; padding: 1px 6px; border-radius: 5px; }
+html[data-theme="light"] .eyebrow,
+html[data-theme="light"] .photo-chip { color: #1d4ed8 !important; }
+html[data-theme="light"] .hero h1 span {
+  background: linear-gradient(90deg, #2563eb, #0284c7, #d97706) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+}
+html[data-theme="light"] .hero-tag {
+  background: rgba(255, 255, 255, 0.94) !important;
+  color: #0f172a !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+}
+html[data-theme="light"] .gate-alert { color: #92400e !important; }
+html[data-theme="light"] .gate-alert strong { color: #78350f !important; }
+html[data-theme="light"] #regForm div[style*="background:rgba(59,130,246"] { color: #1e40af !important; }
+
+
+/* ================= DARK THEME ================= */
+html[data-theme="dark"] {
+  --bg: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #0d1322 100%) !important;
+  --bg-gradient: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #0d1322 100%) !important;
+  --bg-body: #0b0f19 !important;
+  --bg-main: #0b0f19 !important;
+  --bg-card: rgba(23, 31, 48, 0.85) !important;
+  --card: rgba(23, 31, 48, 0.85) !important;
+  --solid: #171f30 !important;
+  --surface: #171f30 !important;
+  --text: #f3f4f6 !important;
+  --muted: #9ca3af !important;
+  --accent: #3b82f6 !important;
+  --accent-2: #60a5fa !important;
+  --accent-glow: rgba(59, 130, 246, 0.25) !important;
+  --gold: #f59e0b !important;
+  --border: rgba(255, 255, 255, 0.09) !important;
+  --border-accent: rgba(59, 130, 246, 0.35) !important;
+  --track: rgba(255, 255, 255, 0.06) !important;
+  --success: #10b981 !important;
+  --success-bg: rgba(16, 185, 129, 0.14) !important;
+  --warn: #f59e0b !important;
+  --warn-bg: rgba(245, 158, 11, 0.14) !important;
+  --danger: #ef4444 !important;
+  --danger-bg: rgba(239, 68, 68, 0.14) !important;
+}
+
+html[data-theme="dark"],
+html[data-theme="dark"] body {
+  background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #0d1322 100%) !important;
+  background-color: #0b0f19 !important;
+  color: #f3f4f6 !important;
+}
+
+html[data-theme="dark"] .navbar-outer {
+  background: rgba(15, 23, 42, 0.88) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09) !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35) !important;
+}
+html[data-theme="dark"] .navbar .brand { color: #f3f4f6 !important; }
+html[data-theme="dark"] .navbar nav a,
+html[data-theme="dark"] .nav-links a { color: #9ca3af !important; }
+html[data-theme="dark"] .navbar nav a:hover,
+html[data-theme="dark"] .nav-links a:hover { color: #ffffff !important; background: rgba(255, 255, 255, 0.06) !important; }
+html[data-theme="dark"] .navbar nav a.on,
+html[data-theme="dark"] .navbar nav a.active {
+  color: #ffffff !important;
+  background: rgba(59, 130, 246, 0.22) !important;
+  border-color: rgba(59, 130, 246, 0.4) !important;
+}
+
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3,
+html[data-theme="dark"] h4 { color: #f3f4f6; }
+
+html[data-theme="dark"] .sub,
+html[data-theme="dark"] .subtitle,
+html[data-theme="dark"] header p,
+html[data-theme="dark"] .sec-head p { color: #9ca3af !important; }
+
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .kpi,
+html[data-theme="dark"] .stat-card,
+html[data-theme="dark"] .panel,
+html[data-theme="dark"] .portal-card,
+html[data-theme="dark"] .step-card,
+html[data-theme="dark"] .photo-card,
+html[data-theme="dark"] .comm-pill-card,
+html[data-theme="dark"] .comm-card,
+html[data-theme="dark"] .menu-card,
+html[data-theme="dark"] .mun-intro-box,
+html[data-theme="dark"] .mun-pillar {
+  background: rgba(23, 31, 48, 0.85) !important;
+  border-color: rgba(255, 255, 255, 0.09) !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3) !important;
+}
+
+html[data-theme="dark"] .glossary-item {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-color: rgba(255, 255, 255, 0.09) !important;
+  color: #9ca3af !important;
+}
+html[data-theme="dark"] .glossary-item strong { color: #f3f4f6 !important; }
+
+html[data-theme="dark"] .table-wrap { background: rgba(15, 23, 42, 0.5) !important; border-color: rgba(255, 255, 255, 0.09) !important; }
+html[data-theme="dark"] th { background: rgba(255, 255, 255, 0.05) !important; color: #9ca3af !important; }
+html[data-theme="dark"] td { color: #f3f4f6; }
+html[data-theme="dark"] tbody tr:hover { background: rgba(255, 255, 255, 0.03) !important; }
+
+html[data-theme="dark"] dialog {
+  background: #171f30 !important;
+  color: #f3f4f6 !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+html[data-theme="dark"] input,
+html[data-theme="dark"] select,
+html[data-theme="dark"] textarea {
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: #f3f4f6 !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+html[data-theme="dark"] option { background: #171f30; color: #f3f4f6; }
+
+html[data-theme="dark"] button,
+html[data-theme="dark"] .btn-ghost {
+  background: #171f30;
+  color: #f3f4f6;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+html[data-theme="dark"] button.primary,
+html[data-theme="dark"] .btn-primary {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important;
+  color: #ffffff !important;
+  border-color: rgba(59, 130, 246, 0.45) !important;
+}
+html[data-theme="dark"] button.success,
+html[data-theme="dark"] button.ok,
+html[data-theme="dark"] .btn-success,
+html[data-theme="dark"] #btnAuto {
+  background: rgba(16, 185, 129, 0.16) !important;
+  color: #34d399 !important;
+  border-color: rgba(16, 185, 129, 0.35) !important;
+}
+html[data-theme="dark"] button.danger,
+html[data-theme="dark"] button.logout,
+html[data-theme="dark"] .btn-danger {
+  background: rgba(239, 68, 68, 0.15) !important;
+  color: #f87171 !important;
+  border-color: rgba(239, 68, 68, 0.35) !important;
+}
+html[data-theme="dark"] button.danger:hover:not(:disabled),
+html[data-theme="dark"] button.logout:hover:not(:disabled),
+html[data-theme="dark"] .btn-danger:hover:not(:disabled) {
+  background: #ef4444 !important;
+  color: #ffffff !important;
+}
+html[data-theme="dark"] .tabs button { background: transparent !important; color: #9ca3af !important; border-color: transparent !important; }
+html[data-theme="dark"] .tabs button.on { background: #171f30 !important; color: #f3f4f6 !important; border-color: rgba(255, 255, 255, 0.12) !important; }
+
+html[data-theme="dark"] code { background: rgba(255, 255, 255, 0.08) !important; color: #e2e8f0 !important; padding: 1px 6px; border-radius: 5px; }
+html[data-theme="dark"] .eyebrow,
+html[data-theme="dark"] .photo-chip { color: #93c5fd !important; }
+html[data-theme="dark"] .hero h1 span {
+  background: linear-gradient(90deg, #60a5fa, #38bdf8, #fbbf24) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+}
+html[data-theme="dark"] .hero-tag {
+  background: rgba(15, 23, 42, 0.88) !important;
+  color: #f8fafc !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+html[data-theme="dark"] .gate-alert { color: #fde68a !important; }
+html[data-theme="dark"] .gate-alert strong { color: #ffffff !important; }
+html[data-theme="dark"] #regForm div[style*="background:rgba(59,130,246"] { color: #bfdbfe !important; }
+
+
+/* ================= THEME TOGGLE BUTTON ================= */
+.theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+html[data-theme="light"] .theme-toggle-btn {
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+  border: 1px solid rgba(15, 23, 42, 0.16) !important;
+}
+html[data-theme="light"] .theme-toggle-btn:hover {
+  background: #e2e8f0 !important;
+  border-color: #2563eb !important;
+}
+html[data-theme="dark"] .theme-toggle-btn {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #f8fafc !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+}
+html[data-theme="dark"] .theme-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: #60a5fa !important;
+}
+.theme-toggle-floating {
+  position: fixed;
+  top: 18px;
+  right: 20px;
+  z-index: 999;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.16);
+}
+.nav-right-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
