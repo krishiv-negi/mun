@@ -1,8 +1,7 @@
-// deleteCommittee.h
-// Delete Committee / Portfolio
+#pragma once
 #include "db.h"
 
-void deleteCommittee() {
+inline void deleteCommittee() {
     int ci = selectCommittee();
     if (ci == -1) return;
 
@@ -10,12 +9,12 @@ void deleteCommittee() {
         cout << "Cancelled.\n";
         return;
     }
-    if (!dbDeleteCommittee(committees[ci].name)) return;   // cascades to portfolios + allocations
+    if (!dbDeleteCommittee(committees[ci].name)) return;
     committees.erase(committees.begin() + ci);
-    cout << "Committee deleted.\n";
+    cout << "Committee deleted successfully.\n";
 }
 
-void deletePortfolio() {
+inline void deletePortfolio() {
     int ci = selectCommittee();
     if (ci == -1) return;
     int pi = selectPortfolio(ci);
@@ -30,5 +29,5 @@ void deletePortfolio() {
     }
     if (!dbDeletePortfolio(committees[ci].name, pf.name)) return;
     committees[ci].portfolios.erase(committees[ci].portfolios.begin() + pi);
-    cout << "Portfolio deleted.\n";
+    cout << "Portfolio deleted successfully.\n";
 }
